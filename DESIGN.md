@@ -17,3 +17,4 @@ Source measurements and aesthetic guidelines referenced from Mercury / Refero de
 - **Typography:**
   - Display / Headings: `Manrope` with intermediate weight (500–650), architectural tracking (`-0.02em` to `0.01em`), line-height 1.15
   - Body & UI: `DM Sans` at weight 400 with 1.55–1.65 line-height
+
