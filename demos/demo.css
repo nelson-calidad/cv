@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@550;600;650;700&display=swap');
 
 :root {
   --primary: #1D5060;
@@ -18,9 +18,9 @@
   --warning-bg: #FFF8E6;
   --danger: #B42318;
   --danger-bg: #FEE4E2;
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 14px;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-pill: 40px;
 }
 
 *, *::before, *::after {
@@ -32,15 +32,16 @@ body {
   font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   color: var(--text);
   background: var(--surface);
-  line-height: 1.6;
+  line-height: 1.62;
   font-size: 15px;
 }
 
 h1, h2, h3, h4 {
   font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   color: var(--ink);
-  line-height: 1.2;
-  letter-spacing: -0.03em;
+  line-height: 1.18;
+  letter-spacing: -0.025em;
+  font-weight: 650;
   margin-top: 0;
 }
 
@@ -59,8 +60,8 @@ a {
 }
 
 button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
-  outline: 3px solid var(--primary);
-  outline-offset: 2px;
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
 }
 
 /* Header bar */
@@ -75,7 +76,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .head {
   max-width: 1140px;
   margin: 0 auto;
-  padding: 14px 24px;
+  padding: 14px 28px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -96,7 +97,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   background: var(--primary);
   color: #fff;
   border-radius: var(--radius-sm);
-  padding: 6px 10px;
+  padding: 5px 9px;
   font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.05em;
@@ -119,24 +120,31 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   border: 1px solid var(--primary-border);
   background: var(--primary-light);
   color: var(--primary);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  padding: 6px 12px;
-  border-radius: 20px;
+  font-size: 11.5px;
+  font-weight: 650;
+  letter-spacing: 0.04em;
+  padding: 6px 16px;
+  border-radius: var(--radius-pill);
+  transition: all 0.15s ease;
+}
+
+.pill:hover {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
 }
 
 .wrap {
   max-width: 1140px;
   margin: 0 auto;
-  padding: 32px 24px 80px;
+  padding: 40px 28px 80px;
 }
 
 .eyebrow {
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.14em;
-  font-weight: 800;
+  font-weight: 700;
   color: var(--primary);
   margin-bottom: 8px;
   display: inline-block;
@@ -155,17 +163,17 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 }
 
 .notice {
-  padding: 14px 18px;
+  padding: 16px 20px;
   border: 1px solid var(--primary-border);
   background: var(--primary-light);
   color: var(--primary);
   border-radius: var(--radius-md);
-  font-size: 13px;
-  line-height: 1.5;
-  margin-bottom: 24px;
+  font-size: 13.5px;
+  line-height: 1.55;
+  margin-bottom: 28px;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
 }
 
 .notice-icon {
@@ -177,13 +185,13 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .panel {
   background: var(--paper);
   border: 1px solid var(--line);
-  border-radius: var(--radius-lg);
-  padding: 24px;
-  box-shadow: 0 1px 3px rgba(25, 43, 51, 0.03);
+  border-radius: var(--radius-md);
+  padding: 28px;
 }
 
 .section-title {
   font-size: 18px;
+  font-weight: 650;
   margin-bottom: 18px;
 }
 
@@ -199,7 +207,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   border: 1px solid var(--line);
   border-radius: var(--radius-md);
   background: var(--paper);
-  padding: 20px;
+  padding: 22px;
 }
 
 .kpi small {
@@ -218,7 +226,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   letter-spacing: -0.04em;
   color: var(--ink);
   margin: 8px 0 4px;
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .kpi p {
@@ -235,29 +243,30 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   margin-bottom: 24px;
 }
 
-/* Controls & Buttons */
+/* Controls & Buttons (Pill Shapes) */
 .button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
   border: 1px solid var(--primary);
-  border-radius: var(--radius-sm);
-  padding: 10px 18px;
+  border-radius: var(--radius-pill);
+  padding: 10px 20px;
   background: var(--primary);
   color: #fff;
-  font-weight: 700;
+  font-weight: 650;
   font-size: 13px;
-  transition: all 0.15s ease;
+  transition: all 0.16s ease;
 }
 
 .button:hover {
   background: var(--primary-hover);
   border-color: var(--primary-hover);
+  transform: translateY(-1px);
 }
 
 .button.secondary {
-  background: var(--paper);
+  background: transparent;
   color: var(--ink);
   border-color: var(--line-strong);
 }
@@ -265,11 +274,13 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .button.secondary:hover {
   border-color: var(--primary);
   color: var(--primary);
+  background: var(--surface);
 }
 
 .button:disabled {
-  opacity: 0.5;
+  opacity: 0.45;
   cursor: not-allowed;
+  transform: none;
 }
 
 /* Form fields */
@@ -277,14 +288,14 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   display: grid;
   gap: 6px;
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 650;
   color: var(--text);
 }
 
 select, input, textarea {
   border: 1px solid var(--line-strong);
-  border-radius: var(--radius-sm);
-  padding: 10px 12px;
+  border-radius: 8px;
+  padding: 10px 14px;
   background: var(--paper);
   color: var(--ink);
   outline: none;
@@ -299,7 +310,7 @@ select:focus, input:focus, textarea:focus {
 /* Bar rows */
 .bar-row {
   display: grid;
-  grid-template-columns: 150px 1fr 48px;
+  grid-template-columns: 155px 1fr 48px;
   align-items: center;
   gap: 14px;
   margin: 14px 0;
@@ -307,8 +318,8 @@ select:focus, input:focus, textarea:focus {
 }
 
 .track {
-  height: 9px;
-  border-radius: 6px;
+  height: 8px;
+  border-radius: 4px;
   background: #E8EFF2;
   overflow: hidden;
 }
@@ -316,7 +327,7 @@ select:focus, input:focus, textarea:focus {
 .fill {
   height: 100%;
   background: var(--primary);
-  border-radius: 6px;
+  border-radius: 4px;
   transition: width 0.3s ease;
 }
 
@@ -360,9 +371,9 @@ select:focus, input:focus, textarea:focus {
 /* Tags & Badges */
 .tag {
   display: inline-block;
-  padding: 4px 8px;
-  border-radius: var(--radius-sm);
-  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  font-weight: 650;
   font-size: 11px;
   background: var(--primary-light);
   color: var(--primary);
@@ -397,7 +408,7 @@ select:focus, input:focus, textarea:focus {
   align-items: center;
   gap: 6px;
   color: var(--primary);
-  font-weight: 700;
+  font-weight: 650;
   font-size: 13px;
   margin-bottom: 20px;
 }
