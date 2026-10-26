@@ -29,57 +29,179 @@
       </button>
 
       <nav id="links">
+        <a href="#formacion">Formación</a>
+        <a href="#experiencia">Trayectoria</a>
         <a href="#proyectos">Proyectos</a>
         <a href="proyectos.html">Archivo (9)</a>
-        <a href="#experiencia">Trayectoria</a>
-        <a href="#formacion">Formación</a>
         <a href="#contacto" class="nav-cta">Contacto ↗</a>
       </nav>
     </div>
   </header>
 
   <main id="contenido">
-    <!-- SECTION 1: HERO / PRESENTACIÓN -->
+    <!-- SECTION 1: HERO / PORTADA ASIMÉTRICA CON VISUALIZACIÓN 3D -->
     <section id="inicio" class="wrap hero">
-      <div class="hero-content" style="max-width: 860px;">
-        <div class="eyebrow-pill">
-          <span class="pulse-dot"></span>
-          <span>INGENIERÍA INDUSTRIAL · GESTIÓN DE CALIDAD · AUTOMATIZACIÓN E IA</span>
+      <div class="hero-grid">
+        <div class="hero-content">
+          <div class="eyebrow-pill">
+            <span class="pulse-dot"></span>
+            <span>INGENIERÍA INDUSTRIAL · CALIDAD · AUTOMATIZACIÓN CON IA</span>
+          </div>
+
+          <h1>
+            Ingeniería, calidad<br>y soluciones digitales.
+          </h1>
+
+          <div class="hero-punchline">
+            “Analizo procesos, diseño mejoras y construyo soluciones digitales mediante <strong>automatización y herramientas de inteligencia artificial</strong>.”
+          </div>
+
+          <p class="hero-lead">
+            Estudiante avanzado de <strong>Ingeniería Industrial</strong> (en etapa de tesis) y <strong>Analista de Calidad</strong> en Autosol (Grupo CENOA). Articulo rigor de procesos industriales, auditorías PCGC Volkswagen / ISO 9001 y desarrollo de soluciones digitales asistido por inteligencia artificial para resolver problemas operativos reales.
+          </p>
+
+          <div class="actions">
+            <a class="btn primary" href="#proyectos">
+              Ver proyectos destacados ↓
+            </a>
+            <a class="btn secondary" href="#formacion">
+              Formación y trayectoria
+            </a>
+            <a class="btn ghost" href="#contacto">
+              Contacto directo
+            </a>
+          </div>
         </div>
 
-        <h1>
-          Ingeniería, calidad<br>y soluciones digitales.
-        </h1>
-
-        <div class="hero-punchline">
-          “Analizo procesos, diseño mejoras y construyo soluciones digitales mediante <strong>automatización y herramientas de inteligencia artificial</strong>.”
-        </div>
-
-        <p class="hero-lead">
-          Estudiante avanzado de <strong>Ingeniería Industrial</strong> (en etapa de tesis) y <strong>Analista de Calidad</strong> en Autosol (Grupo CENOA). Articulo rigor de procesos industriales, auditorías PCGC Volkswagen / ISO 9001 y desarrollo de soluciones digitales asistido por inteligencia artificial para resolver problemas operativos reales.
-        </p>
-
-        <div class="actions">
-          <a class="btn primary" href="#proyectos">
-            Explorar proyectos destacados ↓
-          </a>
-          <a class="btn secondary" href="#experiencia">
-            Conocer trayectoria
-          </a>
-          <a class="btn ghost" href="#contacto">
-            Contacto directo
-          </a>
+        <!-- 3D Engineering Structure Canvas (Monochromatic, Lightweight, Interactive) -->
+        <div class="hero-3d-box" id="hero3dContainer">
+          <canvas id="hero3dCanvas" aria-label="Visualización 3D estructural de ingeniería y sistemas"></canvas>
+          <div class="hero-3d-caption">
+            <span><i class="node-indicator"></i> Red de Nodos y Procesos Operativos</span>
+            <span style="font-size: 10px; color: #A3A3A3;">Arrastrá para orbitar ⟳</span>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 2: PROYECTOS DESTACADOS (SOLO 3 CASOS MONUMENTALES) -->
+    <!-- SECTION 2: FORMACIÓN ACADÉMICA Y TÉCNICA (MOSTRADA EN PRIMER TÉRMINO) -->
+    <section id="formacion" class="wrap section-editorial">
+      <div class="section-header-editorial">
+        <span class="section-tag-editorial">EDUCACIÓN Y COMPETENCIAS</span>
+        <h2>Formación académica y técnica.</h2>
+        <p class="section-lead-editorial">
+          Fundamento formativo que articula ingeniería de métodos, desarrollo informático y sólidas bases técnicas de control.
+        </p>
+      </div>
+
+      <div class="academic-cards-grid">
+        <!-- 1. INGENIERÍA INDUSTRIAL -->
+        <div class="academic-card">
+          <div>
+            <span class="degree-tag">GRADO UNIVERSITARIO</span>
+            <h3 class="degree-title">Ingeniería Industrial</h3>
+            <span class="degree-school">Universidad Nacional de Jujuy (UNJu)</span>
+            <div class="degree-status highlight">
+              <span class="dot-status"></span>
+              <strong>En etapa de tesis</strong>
+            </div>
+            <p class="degree-desc">
+              Gestión de la producción, optimización de operaciones, calidad y seguridad ambiental. Tesis en desarrollo sobre la formulación e implementación de un Sistema de Gestión Ambiental (ISO 14001:2015) en operaciones de taller y concesionario automotriz.
+            </p>
+          </div>
+        </div>
+
+        <!-- 2. ANALISTA PROGRAMADOR UNIVERSITARIO -->
+        <div class="academic-card">
+          <div>
+            <span class="degree-tag">PREGRADO UNIVERSITARIO</span>
+            <h3 class="degree-title">Analista Programador Universitario</h3>
+            <span class="degree-school">Universidad Nacional de Jujuy (UNJu)</span>
+            <div class="degree-status">
+              <span class="dot-status dot-neutral"></span>
+              <strong>Cuatro materias pendientes</strong>
+            </div>
+            <p class="degree-desc">
+              Estructuras de datos, desarrollo frontend/backend, algoritmos y diseño de bases de datos relacionales orientadas a la sistematización y automatización de flujos operativos.
+            </p>
+          </div>
+        </div>
+
+        <!-- 3. TÉCNICO INFORMÁTICO -->
+        <div class="academic-card">
+          <div>
+            <span class="degree-tag">EDUCACIÓN TÉCNICA</span>
+            <h3 class="degree-title">Técnico Informático</h3>
+            <span class="degree-school">Escuela de Minas "Dr. Horacio Carrillo"</span>
+            <div class="degree-status">
+              <span class="dot-status dot-completed"></span>
+              <strong>Formación finalizada</strong>
+            </div>
+            <p class="degree-desc">
+              Capacitación integral en arquitectura de hardware, administración de redes, lógica de control, mantenimiento de infraestructura informática y diagnóstico de sistemas.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: EXPERIENCIA LABORAL -->
+    <section id="experiencia" class="wrap section-editorial">
+      <div class="section-header-editorial">
+        <span class="section-tag-editorial">TRAYECTORIA PROFESIONAL</span>
+        <h2>Experiencia laboral.</h2>
+        <p class="section-lead-editorial">
+          Rigor en auditorías normativas, estandarización de procesos y mejora continua en la industria automotriz oficial.
+        </p>
+      </div>
+
+      <div class="timeline-stack">
+        <!-- ROL 1: AUTOSOL / CENOA -->
+        <div class="timeline-item">
+          <div class="timeline-left">
+            <span class="timeline-date">Junio 2025 — Actualidad</span>
+            <span class="timeline-company">Autosol / Grupo CENOA</span>
+            <span class="timeline-loc">Sedes Jujuy y Salta</span>
+          </div>
+          <div class="timeline-right">
+            <h3 class="role-title">Analista de Calidad</h3>
+            <p class="role-summary">
+              Aseguramiento y control de calidad en las operaciones comerciales, administrativas y de posventa del concesionario oficial Volkswagen.
+            </p>
+            <ul class="role-bullets">
+              <li><strong>Auditorías oficiales PCGC Volkswagen e ISO 9001:</strong> Preparación de carpetas de auditoría, recopilación y presentación formal de evidencias ante auditores externos e internos.</li>
+              <li><strong>Gestión y seguimiento de desvíos:</strong> Análisis de causa raíz mediante metodologías 5 Porqués y diagramas de Ishikawa, coordinando planes de acción correctivos con jefaturas de área.</li>
+              <li><strong>Estandarización documental:</strong> Redacción y actualización de procedimientos operativos, hojas de ruta y manuales de calidad de sucursal.</li>
+              <li><strong>Indicadores y tableros de control:</strong> Medición sistemática de índices de satisfacción de clientes (ICSC / NPS), cumplimiento comercial y tasas de resolución en primer contacto.</li>
+              <li><strong>Digitalización asistida por IA:</strong> Mapeo de cuellos de botella y construcción de herramientas digitales (validación de scoring, control documental y tableros) desarrolladas con asistencia de herramientas de IA generativa (Codex, Claude, Gemini).</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- ROL 2: PPS -->
+        <div class="timeline-item">
+          <div class="timeline-left">
+            <span class="timeline-date">2024</span>
+            <span class="timeline-company">Práctica Profesional</span>
+            <span class="timeline-loc">Sector Productivo</span>
+          </div>
+          <div class="timeline-right">
+            <h3 class="role-title">Práctica Profesional Supervisada (PPS)</h3>
+            <p class="role-summary">
+              Aplicación de métodos cuantitativos de Ingeniería Industrial orientados al diagnóstico operativo, estudio de tiempos de ciclo y balanceo de procesos en entornos productivos.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: PROYECTOS DESTACADOS (3 CASOS MONUMENTALES CON CAPTURAS CORRECTAS) -->
     <section id="proyectos" class="wrap section-editorial">
       <div class="section-header-editorial">
         <span class="section-tag-editorial">CASOS SELECCIONADOS</span>
         <h2>Proyectos destacados.</h2>
         <p class="section-lead-editorial">
-          Tres iniciativas emblemáticas donde la ingeniería de métodos, el rigor normativo y las soluciones digitales asistidas por IA generan impacto operativo cuantificable.
+          Tres iniciativas emblemáticas donde la ingeniería de métodos, el rigor normativo y las soluciones digitales asistidas por IA resuelven problemas operativos reales.
         </p>
       </div>
 
@@ -92,11 +214,11 @@
             <span class="badge-status-clean">Tesis en etapa final</span>
           </div>
 
-          <div class="case-grid-content">
+          <div class="case-grid-content with-preview">
             <div class="case-main-info">
               <h3 class="case-title">Diagnóstico Operativo y Gestión Ambiental (ISO 14001:2015)</h3>
               <p class="case-desc">
-                Propuesta metodológica para la estructuración integral de un Sistema de Gestión Ambiental en operaciones automotrices oficiales de Autosol Jujuy. Incluye mapeo de procesos de posventa, matriz de aspectos e impactos ambientales, estandarización del tratamiento de residuos peligrosos (aceites y baterías) y optimización en el uso de recursos hídricos y energéticos.
+                Propuesta metodológica para la estructuración integral de un Sistema de Gestión Ambiental en operaciones automotrices de Autosol Jujuy. Incluye mapeo de procesos de posventa, matriz de aspectos e impactos ambientales, estandarización de residuos peligrosos (aceites usados y baterías) y eficiencia en recursos hídricos y energéticos.
               </p>
 
               <div class="case-points-grid">
@@ -123,6 +245,11 @@
                   Ver caso de estudio técnico ↗
                 </button>
               </div>
+            </div>
+
+            <div class="case-visual-preview">
+              <img src="demos/assets/iso-14001-matriz.svg" alt="Esquema técnico de la matriz de aspectos e impactos ambientales ISO 14001:2015" class="preview-img" loading="lazy">
+              <span class="preview-caption">Matriz técnica de evaluación de aspectos e impactos ambientales en taller</span>
             </div>
           </div>
         </article>
@@ -171,8 +298,8 @@
             </div>
 
             <div class="case-visual-preview">
-              <img src="demos/assets/centro-control-hero.png" alt="Vista previa del Centro de Control Operativo Autosol Volkswagen" class="preview-img" loading="lazy">
-              <span class="preview-caption">Captura real de la plataforma de gestión operativa</span>
+              <img src="demos/assets/centro-control-hero.png" alt="Captura real del Centro de Control Operativo Autosol Volkswagen" class="preview-img" loading="lazy">
+              <span class="preview-caption">Plataforma gerencial del Centro de Control Operativo Autosol Volkswagen</span>
             </div>
           </div>
         </article>
@@ -188,7 +315,7 @@
             <div class="case-main-info">
               <h3 class="case-title">Validación Digital de Suscripciones (Scoring Previsional)</h3>
               <p class="case-desc">
-                Sistema estructurado de validación de comprensión contractual para suscriptores a planes de ahorro previo al primer débito bancario. Reemplazó el call center manual, verificando condiciones clave como el esquema 70/30, licitaciones con alícuotas complementarias y cuotas móviles según valor 0KM, derivando alertas preventivas en caso de dudas del suscriptor.
+                Sistema estructurado de validación de comprensión contractual para suscriptores a planes de ahorro previo al primer débito bancario. Reemplazó el call center tradicional, verificando condiciones clave como el esquema 70/30, licitaciones con alícuotas complementarias y cuotas móviles según valor 0KM, derivando alertas preventivas en caso de dudas del suscriptor.
               </p>
 
               <div class="case-points-grid">
@@ -221,8 +348,8 @@
             </div>
 
             <div class="case-visual-preview">
-              <img src="demos/assets/scoring-preview.png" alt="Vista previa de la validación de suscripción digital" class="preview-img" loading="lazy">
-              <span class="preview-caption">Interfaz de validación comercial y control de alícuotas</span>
+              <img src="demos/assets/scoring-preview.png" alt="Captura real del formulario de validación de suscripción digital Scoring" class="preview-img" loading="lazy">
+              <span class="preview-caption">Formulario interactivo de validación contractual y scoring previsional</span>
             </div>
           </div>
         </article>
@@ -235,118 +362,13 @@
           <span class="callout-pill">ARCHIVO COMPLETO</span>
           <h3>Explorar los 9 proyectos de ingeniería y calidad</h3>
           <p>
-            Accedé al registro integral con auditorías de legajos digitales (Auditores V2.1), optimización de pañol de insumos, agenda de fidelización, análisis de productividad de taller, balance de línea de panadería y automatización industrial enológica.
+            Accedé al catálogo integral con auditorías de legajos digitales (Auditores V2.1), pañol de insumos, agenda de fidelización, análisis de productividad de taller, balance de línea de panadería y automatización industrial enológica.
           </p>
         </div>
         <div class="callout-action">
           <a href="proyectos.html" class="btn primary large-btn">
             Ver catálogo completo (9 proyectos) →
           </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION 3: EXPERIENCIA LABORAL -->
-    <section id="experiencia" class="wrap section-editorial">
-      <div class="section-header-editorial">
-        <span class="section-tag-editorial">TRAYECTORIA PROFESIONAL</span>
-        <h2>Experiencia laboral.</h2>
-        <p class="section-lead-editorial">
-          Rigor en auditorías normativas, estandarización de procesos y mejora continua en la industria automotriz.
-        </p>
-      </div>
-
-      <div class="timeline-stack">
-        <!-- ROL 1: AUTOSOL / CENOA -->
-        <div class="timeline-item">
-          <div class="timeline-left">
-            <span class="timeline-date">Junio 2025 — Actualidad</span>
-            <span class="timeline-company">Autosol / Grupo CENOA</span>
-            <span class="timeline-loc">Sedes Jujuy y Salta</span>
-          </div>
-          <div class="timeline-right">
-            <h3 class="role-title">Analista de Calidad</h3>
-            <p class="role-summary">
-              Responsable del aseguramiento y control de calidad en las operaciones comerciales y de posventa del concesionario oficial Volkswagen.
-            </p>
-            <ul class="role-bullets">
-              <li><strong>Auditorías oficiales PCGC Volkswagen e ISO 9001:</strong> Preparación de carpetas de auditoría, recopilación y presentación formal de evidencias normativas ante auditores externos e internos.</li>
-              <li><strong>Gestión y seguimiento de desvíos:</strong> Análisis de causa raíz mediante metodologías 5 Porqués y diagramas de Ishikawa, liderando la formulación y verificación de planes de acción correctivos.</li>
-              <li><strong>Estandarización documental:</strong> Redacción y actualización de procedimientos operativos, hojas de ruta y manuales de calidad de sucursal.</li>
-              <li><strong>Indicadores y tableros de control:</strong> Medición sistemática de índices de satisfacción de clientes (ICSC / NPS), cumplimiento comercial y tasas de resolución en primer contacto.</li>
-              <li><strong>Digitalización asistida por IA:</strong> Mapeo de cuellos de botella y diseño de soluciones digitales operativas (encuestas de validación, control de legajos y dashboards) construidas con asistencia de herramientas de inteligencia artificial.</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- ROL 2: PPS -->
-        <div class="timeline-item">
-          <div class="timeline-left">
-            <span class="timeline-date">2024</span>
-            <span class="timeline-company">Práctica Profesional</span>
-            <span class="timeline-loc">Universidad / Sector Productivo</span>
-          </div>
-          <div class="timeline-right">
-            <h3 class="role-title">Práctica Profesional Supervisada (PPS)</h3>
-            <p class="role-summary">
-              Aplicación de métodos cuantitativos de Ingeniería Industrial orientados al diagnóstico operativo, estudio de tiempos y balanceo de procesos en entornos productivos y de servicio.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION 4: FORMACIÓN ACADÉMICA Y TÉCNICA -->
-    <section id="formacion" class="wrap section-editorial">
-      <div class="section-header-editorial">
-        <span class="section-tag-editorial">EDUCACIÓN Y COMPETENCIAS</span>
-        <h2>Formación académica y técnica.</h2>
-        <p class="section-lead-editorial">
-          Base integral que articula ingeniería de métodos, programación de software y formación técnica informática.
-        </p>
-      </div>
-
-      <div class="academic-cards-grid">
-        <!-- 1. INGENIERÍA INDUSTRIAL -->
-        <div class="academic-card">
-          <span class="degree-tag">GRADO UNIVERSITARIO</span>
-          <h3 class="degree-title">Ingeniería Industrial</h3>
-          <span class="degree-school">Universidad Nacional de Jujuy (UNJu)</span>
-          <div class="degree-status highlight">
-            <span class="dot-status"></span>
-            <strong>En etapa de tesis</strong>
-          </div>
-          <p class="degree-desc">
-            Enfoque en gestión de la producción, optimización de operaciones, gestión de calidad, seguridad ambiental y evaluación de proyectos de inversión. Tesis en desarrollo sobre Sistema de Gestión Ambiental (ISO 14001:2015) aplicado a concesionarios automotrices.
-          </p>
-        </div>
-
-        <!-- 2. ANALISTA PROGRAMADOR UNIVERSITARIO -->
-        <div class="academic-card">
-          <span class="degree-tag">PREGRADO UNIVERSITARIO</span>
-          <h3 class="degree-title">Analista Programador Universitario</h3>
-          <span class="degree-school">Universidad Nacional de Jujuy (UNJu)</span>
-          <div class="degree-status">
-            <span class="dot-status dot-neutral"></span>
-            <strong>Cuatro materias pendientes</strong>
-          </div>
-          <p class="degree-desc">
-            Estructuras de datos, desarrollo de software, modelado de bases de datos relacionales, algoritmos y diseño de sistemas informáticos aplicados a la automatización.
-          </p>
-        </div>
-
-        <!-- 3. TÉCNICO INFORMÁTICO -->
-        <div class="academic-card">
-          <span class="degree-tag">EDUCACIÓN TÉCNICA</span>
-          <h3 class="degree-title">Técnico Informático</h3>
-          <span class="degree-school">Escuela de Minas "Dr. Horacio Carrillo"</span>
-          <div class="degree-status">
-            <span class="dot-status dot-completed"></span>
-            <strong>Formación finalizada</strong>
-          </div>
-          <p class="degree-desc">
-            Sólida fundamentación técnica en arquitectura de hardware, redes, lógica de control, mantenimiento de sistemas y soporte de infraestructura tecnológica.
-          </p>
         </div>
       </div>
     </section>

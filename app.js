@@ -265,3 +265,231 @@ if (menuBtn && linksNav) {
     });
   });
 }
+
+
+/* ==========================================================================
+   DEFERRED 3D ENGINEERING KINETIC LATTICE (PURE MONOCHROME)
+   ========================================================================== */
+(function init3D() {
+  const canvas = document.getElementById('hero3dCanvas');
+  const container = document.getElementById('hero3dContainer');
+  if (!canvas || !container) return;
+
+  // Check reduced motion preference
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    return;
+  }
+
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return;
+
+  let width = 0;
+  let height = 0;
+  let animId = null;
+  let isVisible = true;
+
+  // Engineering Geometry: Hexagonal Geodesic Prism with Central Hub
+  const rawNodes = [
+    // Outer Upper Ring
+    [-1.2, -0.7, -0.7], [0, -0.7, -1.4], [1.2, -0.7, -0.7],
+    [1.2, -0.7, 0.7],   [0, -0.7, 1.4],  [-1.2, -0.7, 0.7],
+    // Outer Lower Ring
+    [-1.2, 0.7, -0.7],  [0, 0.7, -1.4],  [1.2, 0.7, -0.7],
+    [1.2, 0.7, 0.7],    [0, 0.7, 1.4],   [-1.2, 0.7, 0.7],
+    // Central Nucleus Nodes
+    [0, -1.5, 0],       [0, 1.5, 0],
+    [-0.5, 0, -0.5],    [0.5, 0, -0.5],  [0.5, 0, 0.5], [-0.5, 0, 0.5]
+  ];
+
+  const edges = [
+    // Upper Ring
+    [0, 1], [1, 2], [2, 3], [3, 4], [4, 5], [5, 0],
+    // Lower Ring
+    [6, 7], [7, 8], [8, 9], [9, 10], [10, 11], [11, 6],
+    // Vertical Pillars
+    [0, 6], [1, 7], [2, 8], [3, 9], [4, 10], [5, 11],
+    // Diagonal Cross-bracing
+    [0, 7], [1, 8], [2, 9], [3, 10], [4, 11], [5, 6],
+    // Top Apex Connections
+    [12, 0], [12, 1], [12, 2], [12, 3], [12, 4], [12, 5],
+    // Bottom Apex Connections
+    [13, 6], [13, 7], [13, 8], [13, 9], [13, 10], [13, 11],
+    // Core Internal Network
+    [14, 15], [15, 16], [16, 17], [17, 14],
+    [14, 0], [15, 2], [16, 3], [17, 5],
+    [14, 6], [15, 8], [16, 9], [17, 11]
+  ];
+
+  let rotX = 0.35;
+  let rotY = 0.45;
+  let targetRotX = 0.35;
+  let targetRotY = 0.45;
+  let isDragging = false;
+  let prevMouseX = 0;
+  let prevMouseY = 0;
+
+  function resize() {
+    const rect = container.getBoundingClientRect();
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    width = rect.width;
+    height = rect.height;
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+    ctx.scale(dpr, dpr);
+  }
+
+  // Defer initialization slightly after initial paint
+  setTimeout(() => {
+    resize();
+    window.addEventListener('resize', resize);
+  }, 100);
+
+  // Mouse & Touch Controls
+  container.addEventListener('mousedown', (e) => {
+    isDragging = true;
+    prevMouseX = e.clientX;
+    prevMouseY = e.clientY;
+  });
+
+  window.addEventListener('mouseup', () => { isDragging = false; });
+
+  container.addEventListener('mousemove', (e) => {
+    if (isDragging) {
+      const dx = e.clientX - prevMouseX;
+      const dy = e.clientY - prevMouseY;
+      targetRotY += dx * 0.006;
+      targetRotX += dy * 0.006;
+      prevMouseX = e.clientX;
+      prevMouseY = e.clientY;
+    } else {
+      const rect = container.getBoundingClientRect();
+      const normX = (e.clientX - rect.left - rect.width / 2) / (rect.width / 2);
+      const normY = (e.clientY - rect.top - rect.height / 2) / (rect.height / 2);
+      targetRotY = 0.45 + normX * 0.35;
+      targetRotX = 0.35 - normY * 0.25;
+    }
+  });
+
+  // Touch Support
+  container.addEventListener('touchstart', (e) => {
+    if (e.touches.length === 1) {
+      isDragging = true;
+      prevMouseX = e.touches[0].clientX;
+      prevMouseY = e.touches[0].clientY;
+    }
+  }, { passive: true });
+
+  window.addEventListener('touchend', () => { isDragging = false; });
+
+  container.addEventListener('touchmove', (e) => {
+    if (isDragging && e.touches.length === 1) {
+      const dx = e.touches[0].clientX - prevMouseX;
+      const dy = e.touches[0].clientY - prevMouseY;
+      targetRotY += dx * 0.008;
+      targetRotX += dy * 0.008;
+      prevMouseX = e.touches[0].clientX;
+      prevMouseY = e.touches[0].clientY;
+    }
+  }, { passive: true });
+
+  // Pause when not visible
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      isVisible = entries[0].isIntersecting;
+      if (isVisible && !animId) loop();
+    });
+    observer.observe(container);
+  }
+
+  function loop() {
+    if (!isVisible) {
+      animId = null;
+      return;
+    }
+
+    ctx.clearRect(0, 0, width, height);
+
+    // Continuous smooth rotation
+    rotX += (targetRotX - rotX) * 0.04;
+    rotY += (targetRotY - rotY) * 0.04;
+    targetRotY += 0.0018; // Slow constant spin
+
+    const cosY = Math.cos(rotY), sinY = Math.sin(rotY);
+    const cosX = Math.cos(rotX), sinX = Math.sin(rotX);
+
+    const cx = width / 2;
+    const cy = height / 2;
+    const scale = Math.min(width, height) * 0.28;
+    const fov = 4.0;
+
+    // Transform and project nodes
+    const proj = rawNodes.map(p => {
+      // Rotate Y
+      const x1 = p[0] * cosY - p[2] * sinY;
+      const z1 = p[0] * sinY + p[2] * cosY;
+      // Rotate X
+      const y1 = p[1] * cosX - z1 * sinX;
+      const z2 = p[1] * sinX + z1 * cosX;
+
+      const factor = fov / (fov + z2 * 0.45);
+      return {
+        x: cx + x1 * scale * factor,
+        y: cy + y1 * scale * factor,
+        z: z2,
+        factor: factor
+      };
+    });
+
+    // 1. Draw Subtle Background Concentric Ring
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(cx, cy, scale * 1.35, 0, Math.PI * 2);
+    ctx.strokeStyle = '#EDEDEB';
+    ctx.lineWidth = 1;
+    ctx.setLineDash([3, 6]);
+    ctx.stroke();
+    ctx.restore();
+
+    // 2. Draw Fine Monochrome Edges
+    edges.forEach(([i, j]) => {
+      const p1 = proj[i];
+      const p2 = proj[j];
+      const avgZ = (p1.z + p2.z) / 2;
+      const alpha = Math.max(0.12, Math.min(0.75, 0.45 + avgZ * 0.2));
+
+      ctx.beginPath();
+      ctx.moveTo(p1.x, p1.y);
+      ctx.lineTo(p2.x, p2.y);
+      ctx.strokeStyle = `rgba(23, 23, 23, ${alpha})`;
+      ctx.lineWidth = 1.1;
+      ctx.stroke();
+    });
+
+    // 3. Draw Engineering Structural Nodes
+    proj.forEach((p, idx) => {
+      const radius = Math.max(2.5, 4.0 * p.factor);
+      const alpha = Math.max(0.2, Math.min(1.0, 0.55 + p.z * 0.25));
+
+      // Outer point
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, radius, 0, Math.PI * 2);
+      ctx.fillStyle = idx >= 12 ? '#171717' : `rgba(36, 36, 36, ${alpha})`;
+      ctx.fill();
+
+      // Inner white center for hub nodes
+      if (idx >= 12) {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, radius * 0.45, 0, Math.PI * 2);
+        ctx.fillStyle = '#FFFFFF';
+        ctx.fill();
+      }
+    });
+
+    animId = requestAnimationFrame(loop);
+  }
+
+  // Start loop after page stabilizes
+  setTimeout(() => {
+    loop();
+  }, 200);
+})();
