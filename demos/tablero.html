@@ -3,194 +3,625 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#1D5060">
-  <title>Demo · Tablero de Indicadores de Calidad y Scoring</title>
-  <link rel="stylesheet" href="demo.css">
+  <title>Centro de Control Operativo · Autosol Gestión</title>
   <style>
-    .filter-bar {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: flex-end;
-      gap: 16px;
-      margin-bottom: 24px;
-      background: var(--paper);
-      border: 1px solid var(--line);
-      border-radius: var(--radius-md);
-      padding: 18px 22px;
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;0,800;1,400&family=Manrope:wght@600;700;800&display=swap');
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #F8FAFC;
+      color: #0F172A;
+      line-height: 1.5;
+      padding-bottom: 80px;
     }
-    .filter-item {
+
+    /* Top Bar matching Image 1 */
+    .top-header {
+      background: #FFFFFF;
+      border-bottom: 1px solid #E2E8F0;
+      padding: 16px 36px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .vw-logo-pill {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 2px solid #001E50;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 14px;
+      color: #001E50;
+    }
+
+    .brand-text {
+      font-family: 'Manrope', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      color: #001E50;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-divider {
+      color: #CBD5E1;
+      font-size: 18px;
+      font-weight: 300;
+      margin: 0 4px;
+    }
+
+    .brand-subtext {
+      font-size: 15px;
+      color: #64748B;
+      font-weight: 500;
+    }
+
+    .top-right-group {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .system-title {
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: #64748B;
+      text-transform: uppercase;
+    }
+
+    .btn-back-port {
+      background: #F1F5F9;
+      border: 1px solid #E2E8F0;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #334155;
+      text-decoration: none;
+      transition: all 0.15s ease;
+    }
+    .btn-back-port:hover {
+      background: #0F172A;
+      color: #FFFFFF;
+      border-color: #0F172A;
+    }
+
+    /* Main Container */
+    .app-wrap {
+      max-width: 1240px;
+      margin: 24px auto 0;
+      padding: 0 24px;
+    }
+
+    /* Hero Banner matching Image 1 */
+    .hero-banner {
+      position: relative;
+      background: linear-gradient(90deg, #FFFFFF 0%, rgba(255, 255, 255, 0.95) 45%, rgba(255, 255, 255, 0.2) 100%),
+                  url('assets/centro-control-hero.png') center right / cover no-repeat;
+      border-radius: 24px;
+      border: 1px solid #E2E8F0;
+      min-height: 400px;
       display: flex;
       flex-direction: column;
-      gap: 6px;
-      min-width: 180px;
+      justify-content: center;
+      padding: 48px 56px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+      margin-bottom: 40px;
+      overflow: hidden;
     }
-    .filter-item label {
+
+    .hero-content {
+      max-width: 520px;
+      z-index: 2;
+    }
+
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 8px;
       font-size: 11px;
       font-weight: 800;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.1em;
+      color: #0284C7;
       text-transform: uppercase;
-      color: var(--muted);
+      margin-bottom: 16px;
     }
-    .kpi-row {
+
+    .hero-eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 20px;
+      height: 2px;
+      background: #0284C7;
+    }
+
+    .hero-title {
+      font-family: 'Manrope', sans-serif;
+      font-size: 44px;
+      font-weight: 800;
+      line-height: 1.1;
+      color: #001E50;
+      margin-bottom: 16px;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-lead {
+      font-size: 15.5px;
+      color: #475569;
+      line-height: 1.5;
+      margin-bottom: 28px;
+    }
+
+    .btn-situation {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #001E50;
+      color: #FFFFFF;
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(0, 30, 80, 0.25);
+      transition: all 0.15s ease;
+      text-decoration: none;
+    }
+    .btn-situation:hover {
+      background: #0A2D6C;
+      transform: translateY(-1px);
+    }
+
+    .badge-dealer {
+      position: absolute;
+      bottom: 24px;
+      right: 28px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      border: 1px solid #E2E8F0;
+      padding: 8px 18px;
+      border-radius: 30px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #334155;
+    }
+
+    /* Section "Elegí tu área" matching Image 1 */
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      font-family: 'Manrope', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      color: #0F172A;
+      letter-spacing: -0.02em;
+    }
+
+    .section-sub {
+      font-size: 13.5px;
+      color: #64748B;
+    }
+
+    /* Area Cards Grid matching Image 1 */
+    .areas-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin-bottom: 40px;
+    }
+
+    .area-card {
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 16px;
+      padding: 20px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .area-card:hover, .area-card.active {
+      border-color: #001E50;
+      box-shadow: 0 6px 16px rgba(0, 30, 80, 0.08);
+      transform: translateY(-2px);
+    }
+
+    .area-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .area-icon-box {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    .icon-blue { background: #E0F2FE; color: #0284C7; }
+    .icon-yellow { background: #FEF3C7; color: #D97706; }
+    .icon-green { background: #DCFCE7; color: #16A34A; }
+    .icon-teal { background: #CCFBF1; color: #0D9488; }
+
+    .area-text h3 {
+      font-size: 15px;
+      font-weight: 700;
+      color: #0F172A;
+      margin-bottom: 2px;
+    }
+
+    .area-text p {
+      font-size: 12px;
+      color: #64748B;
+    }
+
+    .area-arrow {
+      color: #94A3B8;
+      font-size: 18px;
+      transition: transform 0.15s ease;
+    }
+    .area-card:hover .area-arrow {
+      transform: translateX(4px);
+      color: #001E50;
+    }
+
+    /* Situation Room / Dashboard View */
+    .dashboard-panel {
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 20px;
+      padding: 32px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.03);
+    }
+
+    .panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      border-bottom: 1px solid #F1F5F9;
+      padding-bottom: 20px;
+      margin-bottom: 28px;
+    }
+
+    .panel-titles h2 {
+      font-family: 'Manrope', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      color: #001E50;
+      margin-bottom: 4px;
+    }
+
+    .panel-titles p {
+      font-size: 13px;
+      color: #64748B;
+    }
+
+    .filter-controls {
+      display: flex;
+      gap: 12px;
+    }
+
+    .select-pill {
+      background: #F8FAFC;
+      border: 1px solid #CBD5E1;
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #334155;
+      outline: none;
+      cursor: pointer;
+    }
+
+    /* KPI Cards in Situation Room */
+    .kpi-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 16px;
-      margin-bottom: 24px;
+      margin-bottom: 32px;
     }
-    .advisor-table-wrap {
-      overflow-x: auto;
-      margin-top: 12px;
+
+    .kpi-card {
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 14px;
+      padding: 20px;
     }
-    .kpi.alert {
-      border-left: 4px solid var(--danger);
+
+    .kpi-title {
+      font-size: 11.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #64748B;
+      margin-bottom: 8px;
     }
-    .kpi.success {
-      border-left: 4px solid var(--success);
+
+    .kpi-val {
+      font-family: 'Manrope', sans-serif;
+      font-size: 32px;
+      font-weight: 800;
+      color: #0F172A;
+      line-height: 1;
+      margin-bottom: 8px;
     }
-    .kpi.brand {
-      border-left: 4px solid var(--primary);
+
+    .kpi-badge {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
+      display: inline-block;
     }
-    @media (max-width: 800px) {
-      .kpi-row {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .filter-item {
-        min-width: 100%;
-      }
+
+    .badge-ok { background: #DEF7EC; color: #03543F; }
+    .badge-warn { background: #FEF08A; color: #713F12; }
+
+    /* Performance Breakdown Table */
+    .table-section h4 {
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #0F172A;
+      margin-bottom: 14px;
+    }
+
+    .custom-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+    }
+
+    .custom-table th {
+      background: #F1F5F9;
+      color: #475569;
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: 0.05em;
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 1px solid #E2E8F0;
+    }
+
+    .custom-table td {
+      padding: 14px 16px;
+      border-bottom: 1px solid #F1F5F9;
+      color: #334155;
+    }
+
+    .progress-bar-small {
+      height: 8px;
+      background: #E2E8F0;
+      border-radius: 4px;
+      overflow: hidden;
+      width: 140px;
+    }
+
+    .progress-bar-small .bar {
+      height: 100%;
+      background: #0284C7;
+      border-radius: 4px;
+    }
+
+    .notice-disclaimer {
+      text-align: center;
+      font-size: 12px;
+      color: #94A3B8;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 900px) {
+      .areas-grid { grid-template-columns: repeat(2, 1fr); }
+      .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+      .hero-title { font-size: 32px; }
+      .hero-banner { min-height: auto; padding: 36px 28px; }
+      .top-header { padding: 16px 20px; }
+    }
+
+    @media (max-width: 600px) {
+      .areas-grid { grid-template-columns: 1fr; }
+      .kpi-grid { grid-template-columns: 1fr; }
+      .badge-dealer { position: static; margin-top: 20px; display: inline-block; }
     }
   </style>
 </head>
 <body>
-  <header class="top">
-    <div class="head">
-      <div class="brand">
-        <span class="logo">NN</span>
-        <div class="brand-title">
-          <span>Tablero de Control de Calidad</span>
-          <small>Monitoreo de Scoring y Comprensión Comercial</small>
-        </div>
-      </div>
-      <a href="../index.html#proyectos" class="pill">← Volver al portafolio</a>
+
+  <!-- Top Bar matching Image 1 -->
+  <header class="top-header">
+    <div class="brand-group">
+      <div class="vw-logo-pill">W</div>
+      <div class="brand-text">Autosol</div>
+      <div class="brand-divider">|</div>
+      <div class="brand-subtext">Gestión</div>
+    </div>
+
+    <div class="top-right-group">
+      <span class="system-title">CENTRO DE CONTROL OPERATIVO</span>
+      <a href="../index.html" class="btn-back-port">← Volver al portafolio</a>
     </div>
   </header>
 
-  <main class="wrap">
-    <a href="../index.html#proyectos" class="back-link">← Volver a proyectos</a>
+  <main class="app-wrap">
 
-    <div class="notice">
-      <span class="notice-icon">📊</span>
-      <div>
-        <strong>Tablero de Inteligencia de Gestión:</strong> Esta réplica interactiva recrea el panel gerencial desarrollado para Autosol Jujuy y Salta. Permite filtrar por sucursal y trimestre para recalcular en tiempo real las tasas de comprensión comercial, casos derivados a recontacto y desempeño por asesor. Todos los datos son simulados.
+    <!-- Hero Banner matching Image 1 -->
+    <section class="hero-banner">
+      <div class="hero-content">
+        <div class="hero-eyebrow">Autosol Volkswagen</div>
+        <h1 class="hero-title">Una visión.<br>Todas las áreas.</h1>
+        <p class="hero-lead">Información que conecta a nuestro equipo y transforma cada decisión.</p>
+        <a href="#sala-situacion" class="btn-situation" id="btn-scroll-situation">
+          <span>📈</span> Ingresar a Sala de Situación →
+        </a>
       </div>
-    </div>
+      <div class="badge-dealer">Autosol · Volkswagen</div>
+    </section>
 
-    <p class="eyebrow">CONTROL DE GESTIÓN Y AUDITORÍA DE VENTAS</p>
-    <h1 class="h1">Métricas de Validación y Scoring</h1>
-    <p class="lead">Seguimiento analítico de encuestas post-suscripción para prevenir reclamos y reforzar capacitación de la fuerza de ventas.</p>
-
-    <!-- FILTER BAR -->
-    <div class="filter-bar">
-      <div class="filter-item">
-        <label for="branch-select">Sucursal</label>
-        <select id="branch-select">
-          <option value="all">Todas las sucursales (Jujuy y Salta)</option>
-          <option value="Jujuy">Sede San Salvador de Jujuy</option>
-          <option value="Salta">Sede Salta Capital</option>
-        </select>
+    <!-- "Elegí tu área" Section matching Image 1 -->
+    <section>
+      <div class="section-head">
+        <h2 class="section-title">Elegí tu área</h2>
+        <span class="section-sub">Todo lo que necesitás, en un solo lugar.</span>
       </div>
 
-      <div class="filter-item">
-        <label for="period-select">Período / Trimestre</label>
-        <select id="period-select">
-          <option value="all">Año Completo (Acumulado)</option>
-          <option value="Q1">1° Trimestre (Ene - Mar)</option>
-          <option value="Q2">2° Trimestre (Abr - Jun)</option>
-          <option value="Q3">3° Trimestre (Jul - Sep)</option>
-          <option value="Q4">4° Trimestre (Oct - Dic)</option>
-        </select>
-      </div>
+      <div class="areas-grid">
+        <!-- Postventa -->
+        <div class="area-card" data-area="postventa">
+          <div class="area-left">
+            <div class="area-icon-box icon-blue">🔧</div>
+            <div class="area-text">
+              <h3>Postventa</h3>
+              <p>Taller, PPT y servicios.</p>
+            </div>
+          </div>
+          <span class="area-arrow">→</span>
+        </div>
 
-      <button type="button" class="button secondary" id="reset-filters" style="margin-left: auto;">
-        Restablecer filtros
-      </button>
-    </div>
+        <!-- RRHH -->
+        <div class="area-card" data-area="rrhh">
+          <div class="area-left">
+            <div class="area-icon-box icon-yellow">👥</div>
+            <div class="area-text">
+              <h3>RRHH</h3>
+              <p>Talento y desempeño.</p>
+            </div>
+          </div>
+          <span class="area-arrow">→</span>
+        </div>
 
-    <!-- KPIS -->
-    <div class="kpi-row" id="kpis-container">
-      <!-- Rendered via JS -->
-    </div>
+        <!-- Calidad (Core) -->
+        <div class="area-card active" data-area="calidad">
+          <div class="area-left">
+            <div class="area-icon-box icon-green">📋</div>
+            <div class="area-text">
+              <h3>Calidad</h3>
+              <p>Auditorías y satisfacción.</p>
+            </div>
+          </div>
+          <span class="area-arrow">→</span>
+        </div>
 
-    <!-- MAIN GRAPHS ROW -->
-    <div class="two">
-      <section class="panel">
-        <span class="eyebrow">COMPRENSIÓN POR PUNTO CLAVE</span>
-        <h2 class="section-title">Índice de Entendimiento Comercial</h2>
-        <p class="muted" style="font-size: 13px; margin-bottom: 18px;">
-          Porcentaje de suscriptores que confirmaron comprender cada condición sin dudas:
-        </p>
-        <div id="questions-chart"></div>
-      </section>
-
-      <section class="panel">
-        <span class="eyebrow">ESTADO DE EMISIÓN</span>
-        <h2 class="section-title">Distribución de Validaciones</h2>
-        <p class="muted" style="font-size: 13px; margin-bottom: 18px;">
-          Clasificación operativa según scoring obtenido:
-        </p>
-        <div id="status-chart"></div>
-      </section>
-    </div>
-
-    <!-- SECONDARY ROW -->
-    <div class="two">
-      <section class="panel">
-        <span class="eyebrow">MEJORA CONTINUA</span>
-        <h2 class="section-title">Focos de Capacitación Prioritarios</h2>
-        <p class="muted" style="font-size: 13px; margin-bottom: 16px;">
-          Condiciones con mayor recurrencia de dudas detectadas:
-        </p>
-        <div id="focus-points"></div>
-      </section>
-
-      <section class="panel">
-        <span class="eyebrow">DISTRIBUCIÓN GEOGRÁFICA</span>
-        <h2 class="section-title">Volumen por Sucursal</h2>
-        <p class="muted" style="font-size: 13px; margin-bottom: 16px;">
-          Participación de validaciones según sede operativa:
-        </p>
-        <div id="branches-chart"></div>
-      </section>
-    </div>
-
-    <!-- ADVISORS TABLE -->
-    <section class="panel" style="margin-top: 8px;">
-      <span class="eyebrow">AUDITORÍA POR EQUIPO COMERCIAL</span>
-      <h2 class="section-title">Desempeño y Recontactos por Asesor</h2>
-      <p class="muted" style="font-size: 13px; margin-bottom: 18px;">
-        Permite a la gerencia de ventas identificar necesidad de coaching individual sobre explicación de contratos:
-      </p>
-      <div class="advisor-table-wrap">
-        <table class="mini-table">
-          <thead>
-            <tr>
-              <th>Asesor Ficticio</th>
-              <th>Sucursal</th>
-              <th>Validaciones</th>
-              <th>Comprensión Global</th>
-              <th>Recontactos</th>
-              <th>Efectividad Scoring</th>
-            </tr>
-          </thead>
-          <tbody id="advisors-tbody">
-            <!-- Rendered via JS -->
-          </tbody>
-        </table>
+        <!-- Ambiente -->
+        <div class="area-card" data-area="ambiente">
+          <div class="area-left">
+            <div class="area-icon-box icon-teal">🍃</div>
+            <div class="area-text">
+              <h3>Ambiente</h3>
+              <p>Agua y energía.</p>
+            </div>
+          </div>
+          <span class="area-arrow">→</span>
+        </div>
       </div>
     </section>
 
-    <p id="footer">
-      Módulo demostrativo basado en <strong>tablero-control-end</strong>. Indicadores recalculados 100% en cliente con datos ficticios.
-    </p>
+    <!-- Dashboard Panel (Sala de Situación) -->
+    <section class="dashboard-panel" id="sala-situacion">
+      <div class="panel-header">
+        <div class="panel-titles">
+          <h2 id="area-title">Sala de Situación · Calidad</h2>
+          <p id="area-desc">Monitoreo continuo de auditorías PCGC Volkswagen, satisfacción de clientes y control documental.</p>
+        </div>
+
+        <div class="filter-controls">
+          <select class="select-pill" id="filter-branch">
+            <option value="consolidado">Consolidado (Jujuy y Salta)</option>
+            <option value="jujuy">Sede San Salvador de Jujuy</option>
+            <option value="salta">Sede Salta Capital</option>
+          </select>
+
+          <select class="select-pill" id="filter-quarter">
+            <option value="q3">Q3 2025 (En curso)</option>
+            <option value="q2">Q2 2025</option>
+            <option value="q1">Q1 2025</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- KPI Grid -->
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-title">Conformidad PCGC</div>
+          <div class="kpi-val" id="kpi-pcgc">96.4%</div>
+          <span class="kpi-badge badge-ok">Meta: ≥ 95.0%</span>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-title">Satisfacción Cliente (NPS)</div>
+          <div class="kpi-val" id="kpi-nps">91.8%</div>
+          <span class="kpi-badge badge-ok">Meta: ≥ 88.0%</span>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-title">Scoring sin Desvíos</div>
+          <div class="kpi-val" id="kpi-scoring">94.2%</div>
+          <span class="kpi-badge badge-ok">+3.1% vs Q2</span>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-title">Legajos Auditados Q3</div>
+          <div class="kpi-val" id="kpi-legajos">41 / 48</div>
+          <span class="kpi-badge badge-warn">85.4% del muestreo</span>
+        </div>
+      </div>
+
+      <!-- Detail Table -->
+      <div class="table-section">
+        <h4 id="table-title">Detalle de Indicadores por Proceso</h4>
+        <div style="overflow-x: auto;">
+          <table class="custom-table">
+            <thead>
+              <tr>
+                <th>Proceso / Auditoría</th>
+                <th>Responsable</th>
+                <th>Muestreo</th>
+                <th>Cumplimiento</th>
+                <th>Nivel</th>
+                <th>Estado</th>
+              </tr>
+            </thead>
+            <tbody id="table-body">
+              <!-- Rendered via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <div class="notice-disclaimer">
+      Demostración interactiva de la arquitectura del Centro de Control Operativo Autosol. Datos ficticios generados con fines de presentación profesional.
+    </div>
+
   </main>
 
   <script src="tablero.js"></script>

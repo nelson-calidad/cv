@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#171717">
+  <title>Archivo de Proyectos · Nelson Notario</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip" href="#contenido">Saltar al contenido principal</a>
+
+  <!-- TOP NAVIGATION -->
+  <header class="header">
+    <div class="wrap nav">
+      <a href="index.html#inicio" class="brand" aria-label="Nelson Notario - Inicio">
+        <span class="brand-badge">NN</span>
+        <span>Nelson Notario</span>
+        <span class="brand-desc">Ingeniería · Calidad · Automatización</span>
+      </a>
+
+      <button class="menu" id="menu" aria-label="Abrir menú de navegación" aria-controls="links" aria-expanded="false">
+        Menú ☰
+      </button>
+
+      <nav id="links">
+        <a href="index.html#inicio">← Portafolio principal</a>
+        <a href="index.html#experiencia">Trayectoria</a>
+        <a href="index.html#formacion">Formación</a>
+        <a href="index.html#contacto" class="nav-cta">Contacto ↗</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido" class="wrap section-editorial" style="padding-top: 60px;">
+    <!-- HEADER ARCHIVE -->
+    <div class="section-header-editorial">
+      <span class="section-tag-editorial">CATÁLOGO TÉCNICO COMPLETO</span>
+      <h1>Todos los proyectos.</h1>
+      <p class="section-lead-editorial">
+        Registro integral de iniciativas donde la ingeniería de métodos, el aseguramiento normativo de calidad y el desarrollo ágil de soluciones digitales asistido por inteligencia artificial resuelven desafíos operativos reales.
+      </p>
+    </div>
+
+    <!-- FILTER BAR -->
+    <div class="filters-bar" role="toolbar" aria-label="Filtrar proyectos por especialidad">
+      <button class="filter active" data-filter="todos" type="button">Todos (9)</button>
+      <button class="filter" data-filter="ingenieria" type="button">Ingeniería Industrial</button>
+      <button class="filter" data-filter="calidad" type="button">Gestión de Calidad</button>
+      <button class="filter" data-filter="automatizacion" type="button">Automatización e IA</button>
+    </div>
+
+    <!-- PROJECTS GRID -->
+    <section class="archive-grid" id="projects" aria-label="Lista completa de proyectos">
+      <!-- Rendered dynamically by app.js -->
+    </section>
+
+    <div class="archive-footer-note">
+      <p>
+        <strong>Compromiso ético y de confidencialidad:</strong> Los proyectos empresariales se exponen con fines ilustrativos mediante datos ficticios, sin enlaces a repositorios internos, bases de datos reales ni datos personales de clientes.
+      </p>
+      <a href="index.html" class="btn secondary" style="display:inline-block; margin-top: 16px;">
+        ← Volver a la portada principal
+      </a>
+    </div>
+  </main>
+
+  <!-- MODAL DE DETALLE DE CASO -->
+  <dialog id="projectDialog" aria-labelledby="dialogTitle">
+    <div class="dialog-content">
+      <button class="dialog-close" id="closeDialog" aria-label="Cerrar ventana emergente">✕</button>
+      <div id="detail">
+        <!-- Injected via JS -->
+      </div>
+    </div>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>

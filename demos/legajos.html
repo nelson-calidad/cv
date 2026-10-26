@@ -3,181 +3,693 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#1D5060">
-  <title>Demo · Auditoría de Legajos (Audit Legajos Pro)</title>
-  <link rel="stylesheet" href="demo.css">
+  <title>AUDITORES V2.1 · Seguimiento de Legajos</title>
   <style>
-    .checklist-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 14px;
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;0,800;1,400&family=Manrope:wght@600;700;800&display=swap');
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #EEF2F6;
+      color: #0F172A;
+      line-height: 1.5;
+      padding-bottom: 60px;
     }
-    .checklist-table th {
-      background: var(--surface);
-      font-size: 11px;
+
+    /* Top Navigation matching Image 2 */
+    .top-header {
+      background: #FFFFFF;
+      border-bottom: 1px solid #E2E8F0;
+      padding: 12px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+    }
+
+    .brand-section {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-icon-box {
+      width: 42px;
+      height: 42px;
+      background: #111827;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FFFFFF;
+      font-size: 20px;
+    }
+
+    .brand-titles h1 {
+      font-family: 'Manrope', sans-serif;
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      color: #0F172A;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--muted);
-      padding: 12px 14px;
-      border-bottom: 1px solid var(--line);
-      text-align: left;
     }
-    .checklist-table td {
-      padding: 14px;
-      border-bottom: 1px solid var(--line);
-      font-size: 13.5px;
-      vertical-align: middle;
+
+    .brand-sub {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      color: #64748B;
+      font-weight: 600;
+      margin-top: 1px;
     }
-    .status-btn-group {
-      display: inline-flex;
-      border: 1px solid var(--line-strong);
-      border-radius: var(--radius-sm);
-      overflow: hidden;
+
+    .dot-warn {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #F59E0B;
+      display: inline-block;
     }
-    .status-btn {
-      padding: 7px 12px;
+
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-pill-btn {
+      background: #FFFFFF;
+      border: 1px solid #CBD5E1;
+      padding: 8px 16px;
+      border-radius: 20px;
       font-size: 12px;
       font-weight: 700;
-      border: none;
-      background: var(--paper);
-      color: var(--text);
+      color: #334155;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
       transition: all 0.15s ease;
     }
-    .status-btn:not(:last-child) {
-      border-right: 1px solid var(--line-strong);
+
+    .nav-pill-btn:hover {
+      background: #F8FAFC;
+      border-color: #94A3B8;
     }
-    .status-btn.selected-ok {
-      background: var(--success);
-      color: #fff;
+
+    .btn-back-port {
+      color: #64748B;
+      font-size: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      margin-left: 8px;
     }
-    .status-btn.selected-fail {
-      background: var(--danger);
-      color: #fff;
+    .btn-back-port:hover { color: #0F172A; }
+
+    /* Main Container */
+    .app-container {
+      max-width: 1180px;
+      margin: 24px auto 0;
+      padding: 0 20px;
     }
-    .status-btn.selected-na {
-      background: var(--muted);
-      color: #fff;
+
+    /* Breadcrumb matching Image 2 */
+    .breadcrumb-row {
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
-    .result-scorecard {
-      background: var(--paper);
-      border: 1px solid var(--line);
-      border-radius: var(--radius-md);
-      padding: 22px;
+
+    .breadcrumb-text {
+      font-size: 11px;
+      font-weight: 700;
+      color: #64748B;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .breadcrumb-pill {
+      background: #FFFFFF;
+      border: 1px solid #CBD5E1;
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: #1E293B;
+      text-transform: uppercase;
+    }
+
+    /* Top Two Cards Grid */
+    .top-cards-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 28px;
+    }
+
+    /* Left White Card */
+    .card-white {
+      background: #FFFFFF;
+      border-radius: 20px;
+      padding: 32px 36px;
+      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .card-white-top .back-link {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #6366F1;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      text-decoration: none;
+      display: inline-block;
+      margin-bottom: 14px;
+    }
+
+    .card-white-top .tag-status {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      color: #64748B;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .card-white-top h2 {
+      font-family: 'Manrope', sans-serif;
+      font-size: 30px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #0F172A;
       margin-bottom: 24px;
+    }
+
+    .progress-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
-      gap: 16px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #475569;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
     }
-    .score-circle {
+
+    .progress-count {
+      font-size: 14px;
+      font-weight: 800;
+      color: #0F172A;
+    }
+
+    .progress-bar-bg {
+      height: 12px;
+      background: #E2E8F0;
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 28px;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: #6366F1;
+      border-radius: 8px;
+      transition: width 0.3s ease;
+    }
+
+    .meta-fields {
+      display: flex;
+      gap: 40px;
+      border-top: 1px solid #F1F5F9;
+      padding-top: 18px;
+    }
+
+    .meta-col small {
+      display: block;
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: #94A3B8;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .meta-col strong {
+      font-size: 14px;
+      font-weight: 700;
+      color: #0F172A;
+    }
+
+    /* Right Navy Card matching Image 2 */
+    .card-navy {
+      background: #111827;
+      border-radius: 20px;
+      padding: 32px 36px;
+      color: #FFFFFF;
       display: flex;
       flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 8px 24px rgba(17, 24, 39, 0.15);
+    }
+
+    .tag-cyan {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      color: #38BDF8;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .card-navy h3 {
+      font-family: 'Manrope', sans-serif;
+      font-size: 26px;
+      font-weight: 800;
+      color: #FFFFFF;
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+
+    .card-navy p {
+      font-size: 13.5px;
+      color: #94A3B8;
+      line-height: 1.5;
+      margin-bottom: 28px;
+    }
+
+    .actions-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .btn-purple-primary {
+      background: #6366F1;
+      color: #FFFFFF;
+      border: none;
+      border-radius: 12px;
+      padding: 14px 20px;
+      font-size: 14.5px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
       align-items: center;
       justify-content: center;
-      width: 86px;
-      height: 86px;
-      border-radius: 50%;
-      border: 4px solid var(--primary);
-      background: var(--surface);
+      gap: 8px;
+      transition: background 0.15s ease;
     }
-    .score-circle strong {
-      font-size: 24px;
+    .btn-purple-primary:hover { background: #4F46E5; }
+
+    .btn-navy-secondary {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #E2E8F0;
+      border-radius: 12px;
+      padding: 13px 20px;
+      font-size: 13.5px;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.15s ease;
+    }
+    .btn-navy-secondary:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    /* Bottom List matching Image 2 */
+    .list-section {
+      background: #FFFFFF;
+      border-radius: 20px;
+      padding: 28px 32px;
+      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+    }
+
+    .list-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #F1F5F9;
+      padding-bottom: 18px;
+      margin-bottom: 18px;
+    }
+
+    .list-header h4 {
       font-family: 'Manrope', sans-serif;
-      color: var(--ink);
-      line-height: 1;
-    }
-    .score-circle small {
-      font-size: 10px;
-      color: var(--muted);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      color: #0F172A;
       text-transform: uppercase;
+    }
+
+    .list-count {
+      font-size: 12px;
+      font-weight: 600;
+      color: #64748B;
+    }
+
+    .legajo-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 20px;
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 14px;
+      margin-bottom: 12px;
+      transition: all 0.15s ease;
+    }
+    .legajo-row:hover {
+      background: #FFFFFF;
+      border-color: #CBD5E1;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+
+    .legajo-info {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .legajo-name {
+      font-size: 15px;
       font-weight: 700;
+      color: #0F172A;
+    }
+
+    .pill-status {
+      font-size: 10.5px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 12px;
+    }
+
+    .status-in-progress {
+      background: #E0E7FF;
+      color: #4338CA;
+    }
+
+    .status-conform {
+      background: #DEF7EC;
+      color: #03543F;
+    }
+
+    .status-observed {
+      background: #FEF08A;
+      color: #713F12;
+    }
+
+    .legajo-meta {
+      font-size: 12.5px;
+      color: #64748B;
+      display: flex;
+      gap: 16px;
+    }
+
+    .legajo-btn {
+      background: #FFFFFF;
+      border: 1px solid #CBD5E1;
+      padding: 7px 14px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #1E293B;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .legajo-btn:hover {
+      background: #0F172A;
+      color: #FFFFFF;
+      border-color: #0F172A;
+    }
+
+    /* Modal */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-box {
+      background: #FFFFFF;
+      border-radius: 20px;
+      max-width: 540px;
+      width: 100%;
+      padding: 32px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    }
+
+    .modal-box h3 {
+      font-size: 20px;
+      font-weight: 800;
+      color: #0F172A;
+      margin-bottom: 8px;
+    }
+
+    .modal-box p {
+      font-size: 13.5px;
+      color: #64748B;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+    .form-group label {
+      display: block;
+      font-size: 12px;
+      font-weight: 700;
+      color: #334155;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .form-control {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1px solid #CBD5E1;
+      border-radius: 8px;
+      font-size: 14px;
+      font-family: inherit;
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .btn-cancel {
+      background: #F1F5F9;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 13px;
+      color: #475569;
+      cursor: pointer;
+    }
+
+    .btn-confirm {
+      background: #6366F1;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 13px;
+      color: #FFFFFF;
+      cursor: pointer;
+    }
+
+    .demo-footer-note {
+      text-align: center;
+      font-size: 11.5px;
+      color: #94A3B8;
+      margin-top: 36px;
+    }
+
+    @media (max-width: 860px) {
+      .top-cards-grid { grid-template-columns: 1fr; }
+      .meta-fields { gap: 20px; }
+      .legajo-row { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .legajo-actions { width: 100%; display: flex; justify-content: flex-end; }
     }
   </style>
 </head>
 <body>
-  <header class="top">
-    <div class="head">
-      <div class="brand">
-        <span class="logo">NN</span>
-        <div class="brand-title">
-          <span>Audit Legajos Pro</span>
-          <small>Control Documental y Auditoría PCGC / ISO</small>
+
+  <!-- Top Header matching Image 2 -->
+  <header class="top-header">
+    <div class="brand-section">
+      <div class="brand-icon-box">⚡</div>
+      <div class="brand-titles">
+        <h1>AUDITORES V2.1</h1>
+        <div class="brand-sub">
+          <span class="dot-warn"></span>
+          <span>Sincronizacion inestable</span>
+          <span style="margin-left: 8px; color: #475569;">AUDITADOS: <strong id="total-auditados-label">41</strong></span>
         </div>
       </div>
-      <a href="../index.html#proyectos" class="pill">← Volver al portafolio</a>
+    </div>
+
+    <div class="header-nav">
+      <a href="../index.html" class="nav-pill-btn">
+        <span>🏠</span> INICIO
+      </a>
+      <button type="button" class="nav-pill-btn" id="btn-preguntas">
+        <span>⚙</span> PREGUNTAS
+      </button>
+      <a href="../index.html" class="btn-back-port">← Volver al portafolio</a>
     </div>
   </header>
 
-  <main class="wrap">
-    <a href="../index.html#proyectos" class="back-link">← Volver a proyectos</a>
-
-    <div class="notice">
-      <span class="notice-icon">📋</span>
-      <div>
-        <strong>Control Documental Estándar de Marca:</strong> Recreación interactiva de la herramienta desarrollada para auditorías de legajos de ventas 0KM y planes de ahorro en Autosol. Permite calificar los requisitos exigidos por Volkswagen y normas ISO, recalculando el dictamen de conformidad en tiempo real con datos de prueba.
-      </div>
+  <main class="app-container">
+    <!-- Breadcrumb -->
+    <div class="breadcrumb-row">
+      <span class="breadcrumb-text">INICIO &gt;</span>
+      <span class="breadcrumb-pill">AUDITORÍA Q3 SALTA</span>
     </div>
 
-    <p class="eyebrow">GESTIÓN DE CALIDAD Y AUDITORÍA</p>
-    <h1 class="h1">Auditoría Digital de Legajos</h1>
-    <p class="lead">Checklist normativo con cálculo automático de índice de cumplimiento y reporte de hallazgos para expedientes comerciales.</p>
+    <!-- Top Grid matching Image 2 -->
+    <div class="top-cards-grid">
+      <!-- Left Card -->
+      <div class="card-white">
+        <div class="card-white-top">
+          <a href="../index.html" class="back-link">← VOLVER AL INICIO</a>
+          <span class="tag-status">AUDITORIA EN CURSO</span>
+          <h2>auditoría Q3 salta</h2>
+          
+          <div class="progress-header">
+            <span>PROGRESO DEL OBJETIVO</span>
+            <span class="progress-count" id="progress-text">13 / 16 legajos</span>
+          </div>
 
-    <div class="result-scorecard">
-      <div>
-        <div style="font-size: 12px; color: var(--muted); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;">Expediente Simulado</div>
-        <h2 style="font-size: 20px; margin: 4px 0;">Legajo #LEG-2025-084 · VW Taos Highline</h2>
-        <p class="muted" style="margin: 0; font-size: 13px;">Asesor: Ventas Convencional · Sucursal: San Salvador de Jujuy</p>
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill" id="progress-bar" style="width: 81.25%;"></div>
+          </div>
+        </div>
+
+        <div class="meta-fields">
+          <div class="meta-col">
+            <small>SUCURSAL</small>
+            <strong>Salta</strong>
+          </div>
+          <div class="meta-col">
+            <small>AUDITOR</small>
+            <strong>Melisa Condori</strong>
+          </div>
+        </div>
       </div>
 
-      <div style="display: flex; align-items: center; gap: 20px;">
-        <div class="score-circle" id="score-circle">
-          <strong id="score-pct">100%</strong>
-          <small>Cumplimiento</small>
-        </div>
+      <!-- Right Navy Card matching Image 2 -->
+      <div class="card-navy">
         <div>
-          <div id="score-verdict" class="tag success" style="font-size: 13px; padding: 6px 12px;">Conforme para Entrega</div>
-          <p id="score-detail" class="muted" style="font-size: 12px; margin-top: 4px;">6 de 6 requisitos auditados aprobados</p>
+          <span class="tag-cyan">ACCIONES</span>
+          <h3>Seguimiento de legajos</h3>
+          <p>Sumá legajos nuevos, retomá los que quedaron a mitad de camino o visualizá el reporte general del lote.</p>
+        </div>
+
+        <div class="actions-stack">
+          <button type="button" class="btn-purple-primary" id="btn-add-legajo">
+            <span>+</span> Cargar nuevo legajo
+          </button>
+          <button type="button" class="btn-navy-secondary" id="btn-pdf-preview">
+            Vista previa del lote PDF
+          </button>
         </div>
       </div>
     </div>
 
-    <div class="panel">
-      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
-        <div>
-          <span class="eyebrow">CHECKLIST DE AUDITORÍA</span>
-          <h2 class="section-title" style="margin-bottom: 4px;">Puntos de Control Normativo</h2>
-        </div>
-        <div style="display: flex; gap: 8px;">
-          <button type="button" class="button secondary" id="btn-reset-all" style="font-size: 12px; padding: 6px 12px;">Reestablecer todo conforme</button>
-          <button type="button" class="button secondary" id="btn-simulate-findings" style="font-size: 12px; padding: 6px 12px;">Simular hallazgo crítico</button>
-        </div>
+    <!-- Bottom List matching Image 2 -->
+    <div class="list-section">
+      <div class="list-header">
+        <h4>LISTADO DE LEGAJOS</h4>
+        <span class="list-count" id="list-count-label">13 cargado(s)</span>
       </div>
 
-      <div style="overflow-x: auto;">
-        <table class="checklist-table">
-          <thead>
-            <tr>
-              <th style="width: 50px;">Ítem</th>
-              <th>Requisito Normativo</th>
-              <th>Norma / Estándar</th>
-              <th>Responsable</th>
-              <th style="text-align: right;">Estado de Auditoría</th>
-            </tr>
-          </thead>
-          <tbody id="checklist-tbody">
-            <!-- Rendered via JS -->
-          </tbody>
-        </table>
+      <div id="legajos-list">
+        <!-- Injected via JS -->
       </div>
     </div>
 
-    <p id="footer">
-      Basado en el desarrollo de <strong>Auditoria-Legajos</strong>. Recreación sin datos reales ni acceso a bases de datos corporativas.
-    </p>
+    <div class="demo-footer-note">
+      Demostración interactiva de auditoría documental (Entorno simulado con datos ficticios). Sin conexión a servidores de producción.
+    </div>
   </main>
+
+  <!-- Modal Nuevo Legajo -->
+  <div class="modal-overlay" id="modal-new">
+    <div class="modal-box">
+      <h3>Cargar Nuevo Legajo</h3>
+      <p>Simulación de ingreso de expediente para muestreo aleatorio Q3.</p>
+      <form id="form-new-legajo">
+        <div class="form-group">
+          <label>Apellido y Nombre del Suscriptor</label>
+          <input type="text" class="form-control" id="new-name" placeholder="Ej. Gómez, Facundo Ariel" required>
+        </div>
+        <div class="form-group">
+          <label>Modelo de Suscripción</label>
+          <select class="form-control" id="new-model">
+            <option value="Taos Highline">Taos Highline 250 TSI</option>
+            <option value="Amarok V6 Extreme">Amarok V6 Extreme</option>
+            <option value="T-Cross Sense">T-Cross Sense 170 TSI</option>
+            <option value="Polo Track">Polo Track 1.0</option>
+            <option value="Nivus Highline">Nivus Highline 200 TSI</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>DNI Ficticio</label>
+          <input type="text" class="form-control" id="new-dni" placeholder="Ej. 36.412.980" required>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn-cancel" id="btn-close-modal">Cancelar</button>
+          <button type="submit" class="btn-confirm">+ Incorporar al lote</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal Preview PDF / Lote -->
+  <div class="modal-overlay" id="modal-pdf">
+    <div class="modal-box" style="max-width: 620px;">
+      <h3>Vista Previa del Lote Q3 Salta</h3>
+      <p>Consolidado ejecutivo de auditoría sobre expedientes digitales de suscripción.</p>
+      <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 12px; padding: 18px; font-size: 13px; line-height: 1.6; color: #334155; margin-bottom: 20px;">
+        <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #E2E8F0; padding-bottom: 8px; margin-bottom: 10px; font-weight: 700; color: #0F172A;">
+          <span>Informe Preliminar de Auditoría</span>
+          <span>Sucursal Salta · Muestreo Q3</span>
+        </div>
+        <div>• <strong>Conformidad documental:</strong> 92.3% sobre requisitos críticos de PCGC Volkswagen.</div>
+        <div>• <strong>Puntos clave verificados:</strong> DNI certificado, Hoja de Información Útil, Términos de entrega y scoring previsional.</div>
+        <div>• <strong>Desvíos menores detectados:</strong> 1 caso con firma escaneada de baja resolución derivado a subsanación.</div>
+        <div>• <strong>Dictamen del auditor:</strong> APTO PARA PRESENTACIÓN FORMAL.</div>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn-confirm" id="btn-close-pdf">Cerrar informe</button>
+      </div>
+    </div>
+  </div>
 
   <script src="legajos.js"></script>
 </body>
 </html>
-

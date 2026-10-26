@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0A0F13">
+  <meta name="theme-color" content="#171717">
   <meta name="description" content="Nelson Notario — Portafolio profesional. Ingeniería Industrial, gestión de calidad y automatización de procesos mediante herramientas de IA.">
   <meta name="author" content="Nelson Notario">
   <meta property="og:title" content="Nelson Notario — Ingeniería, Calidad y Soluciones Digitales">
@@ -29,8 +29,8 @@
       </button>
 
       <nav id="links">
-        <a href="#inicio">Inicio</a>
         <a href="#proyectos">Proyectos</a>
+        <a href="proyectos.html">Archivo (9)</a>
         <a href="#experiencia">Trayectoria</a>
         <a href="#formacion">Formación</a>
         <a href="#contacto" class="nav-cta">Contacto ↗</a>
@@ -39,263 +39,376 @@
   </header>
 
   <main id="contenido">
-    <!-- HERO SECTION (Tight, Monumental & Visual) -->
+    <!-- SECTION 1: HERO / PRESENTACIÓN -->
     <section id="inicio" class="wrap hero">
-      <div class="hero-grid">
-        <div class="hero-content">
-          <div class="eyebrow-pill">
-            <span class="pulse-dot"></span>
-            <span>DISPONIBLE PARA PROYECTOS · JUJUY Y SALTA</span>
-          </div>
-
-          <h1>
-            Ingeniería, calidad<br>y <span class="text-gradient">soluciones digitales.</span>
-          </h1>
-
-          <div class="hero-punchline">
-            “Analizo procesos, diseño mejoras y construyo soluciones digitales mediante <strong>automatización e inteligencia artificial</strong>.”
-          </div>
-
-          <p class="hero-lead">
-            Estudiante avanzado de <strong>Ingeniería Industrial</strong> y <strong>Analista de Calidad</strong> en Autosol (Grupo CENOA). Articulo rigor de procesos, auditorías PCGC Volkswagen / ISO y desarrollo ágil asistido por IA para eliminar cuellos de botella operativos.
-          </p>
-
-          <div class="actions">
-            <a class="btn primary" href="#proyectos">
-              Ver proyectos destacados <span aria-hidden="true">↗</span>
-            </a>
-            <a class="btn secondary" href="#experiencia">
-              Trayectoria profesional
-            </a>
-            <a class="btn ghost" href="#contacto">
-              Contacto directo
-            </a>
-          </div>
+      <div class="hero-content" style="max-width: 860px;">
+        <div class="eyebrow-pill">
+          <span class="pulse-dot"></span>
+          <span>INGENIERÍA INDUSTRIAL · GESTIÓN DE CALIDAD · AUTOMATIZACIÓN E IA</span>
         </div>
 
-        <!-- 3D Process Engine Canvas -->
-        <div class="hero-stage" id="stage3d">
-          <canvas id="canvas3d"></canvas>
-          
-          <div class="hud-badge top-left">
-            <span>AUDITORÍAS OFICIALES</span>
-            <strong>PCGC VW & ISO 9001</strong>
-          </div>
+        <h1>
+          Ingeniería, calidad<br>y soluciones digitales.
+        </h1>
 
-          <div class="hud-badge bottom-right">
-            <span>AUTOMATIZACIÓN CON IA</span>
-            <strong>+320 Validaciones / Mes</strong>
-          </div>
-
-          <div class="stage-hint">
-            Interactuá arrastrando el modelo 3D ⟳
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- METRICS RIBBON (Bold High-Contrast Band) -->
-    <section class="metrics-ribbon" aria-label="Métricas destacadas">
-      <div class="wrap">
-        <div class="metrics-grid">
-          <div class="metric-item highlight">
-            <strong>100%</strong>
-            <p>Validaciones de Scoring digitalizadas (Planes de ahorro)</p>
-          </div>
-          <div class="metric-item">
-            <strong>PCGC & ISO</strong>
-            <p>Auditorías oficiales Volkswagen e ISO 9001 gestionadas</p>
-          </div>
-          <div class="metric-item">
-            <strong>6+</strong>
-            <p>Herramientas de software construidas con asistencia de IA</p>
-          </div>
-          <div class="metric-item">
-            <strong>UNJu</strong>
-            <p>Tesis de Ingeniería Industrial en gestión ambiental (ISO 14001)</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- PROYECTOS BENTO GRID (Immediate Impact, No Long Preambles) -->
-    <section id="proyectos" class="section subtle">
-      <div class="wrap">
-        <div class="section-header">
-          <div>
-            <span class="eyebrow-pill">PORTAFOLIO DE CASOS REALES</span>
-            <h2>Soluciones y desarrollos.</h2>
-          </div>
-          <p class="section-intro">
-            Selección de casos aplicados a operaciones reales y proyectos de ingeniería. Podés explorar cada caso y probar demostraciones interactivas con datos ficticios.
-          </p>
+        <div class="hero-punchline">
+          “Analizo procesos, diseño mejoras y construyo soluciones digitales mediante <strong>automatización y herramientas de inteligencia artificial</strong>.”
         </div>
 
-        <div class="filters" role="group" aria-label="Filtrar proyectos por categoría">
-          <button class="filter active" data-filter="todos">Todos los casos</button>
-          <button class="filter" data-filter="calidad">Gestión de Calidad</button>
-          <button class="filter" data-filter="automatizacion">Automatización con IA</button>
-          <button class="filter" data-filter="ingenieria">Ingeniería Industrial</button>
-        </div>
-
-        <div id="projects" class="bento-grid" aria-live="polite"></div>
-      </div>
-    </section>
-
-    <!-- EXPERIENCIA SECTION -->
-    <section id="experiencia" class="section">
-      <div class="wrap">
-        <span class="eyebrow-pill">TRAYECTORIA LABORAL</span>
-        <h2>Experiencia profesional.</h2>
-        <p class="muted" style="max-width: 680px; margin-bottom: 40px;">
-          Gestión activa en el sector automotriz y concesionarios oficiales, integrando auditorías de calidad exigentes con iniciativas de digitalización.
+        <p class="hero-lead">
+          Estudiante avanzado de <strong>Ingeniería Industrial</strong> (en etapa de tesis) y <strong>Analista de Calidad</strong> en Autosol (Grupo CENOA). Articulo rigor de procesos industriales, auditorías PCGC Volkswagen / ISO 9001 y desarrollo de soluciones digitales asistido por inteligencia artificial para resolver problemas operativos reales.
         </p>
 
-        <div class="experience-list">
-          <article class="experience-item">
-            <div class="job-meta">
-              <div class="job-date">Junio 2025 — Actualidad</div>
-              <div class="job-company">Autosol · Grupo CENOA</div>
-              <div class="job-location">Sedes Jujuy y Salta</div>
-              <span class="job-badge">Gestión en curso</span>
-            </div>
-
-            <div class="job-content">
-              <h3>Analista de Calidad</h3>
-              <p>
-                Responsable del aseguramiento y mejora continua de los procesos en las operaciones comerciales y de posventa para las sedes de Jujuy y Salta. Gestión activa de normativas y estándares internacionales y corporativos:
-              </p>
-              
-              <ul class="bullets-list">
-                <li><strong>Auditorías PCGC Volkswagen:</strong> Preparación documental exhaustiva, defensa presencial de procesos y seguimiento de requerimientos de marca.</li>
-                <li><strong>Auditorías ISO 9001 e internas:</strong> Relevamiento de procesos, presentación de evidencias objetivas y mantenimiento del sistema de gestión.</li>
-                <li><strong>Hallazgos y causa raíz:</strong> Aplicación de metodologías causales (5 Porqués, Ishikawa) y diseño de planes de acción correctiva.</li>
-                <li><strong>Procedimientos e indicadores:</strong> Elaboración y actualización de procedimientos normalizados y seguimiento de KPIs clave de gestión.</li>
-                <li><strong>Automatización y soluciones digitales:</strong> Identificación de ineficiencias y desarrollo de herramientas asistidas por IA para control de suscripciones, gestión de insumos y auditoría documental.</li>
-              </ul>
-            </div>
-          </article>
-
-          <article class="experience-item">
-            <div class="job-meta">
-              <div class="job-date">2024</div>
-              <div class="job-company">Autosol · Grupo CENOA</div>
-              <div class="job-location">Jujuy, Argentina</div>
-              <span class="job-badge">Práctica Supervisada</span>
-            </div>
-
-            <div class="job-content">
-              <h3>Práctica Profesional Supervisada (PPS)</h3>
-              <p>
-                Desarrollo de relevamiento operativo en planta comercial y posventa, estandarización documental, diagramación de flujogramas y mapas de procesos, participando activamente en proyectos de reingeniería de procesos internos.
-              </p>
-            </div>
-          </article>
+        <div class="actions">
+          <a class="btn primary" href="#proyectos">
+            Explorar proyectos destacados ↓
+          </a>
+          <a class="btn secondary" href="#experiencia">
+            Conocer trayectoria
+          </a>
+          <a class="btn ghost" href="#contacto">
+            Contacto directo
+          </a>
         </div>
       </div>
     </section>
 
-    <!-- FORMACIÓN SECTION -->
-    <section id="formacion" class="section subtle">
-      <div class="wrap">
-        <span class="eyebrow-pill">PERFIL ACADÉMICO</span>
-        <h2>Formación técnica y de grado.</h2>
-        <p class="muted" style="max-width: 680px; margin-bottom: 40px;">
-          Presentación transparente del avance formativo, integrando ciencias de la ingeniería, informática y gestión.
+    <!-- SECTION 2: PROYECTOS DESTACADOS (SOLO 3 CASOS MONUMENTALES) -->
+    <section id="proyectos" class="wrap section-editorial">
+      <div class="section-header-editorial">
+        <span class="section-tag-editorial">CASOS SELECCIONADOS</span>
+        <h2>Proyectos destacados.</h2>
+        <p class="section-lead-editorial">
+          Tres iniciativas emblemáticas donde la ingeniería de métodos, el rigor normativo y las soluciones digitales asistidas por IA generan impacto operativo cuantificable.
         </p>
+      </div>
 
-        <div class="education-grid">
-          <article class="education-card">
-            <span class="education-status">En curso · Etapa de tesis</span>
-            <h3>Ingeniería Industrial</h3>
-            <p class="education-institution">Universidad Nacional de Jujuy (UNJu)</p>
-            <p class="education-note">
-              Formación integral en gestión de operaciones, formulación de proyectos, optimización de recursos y sistemas de gestión ambiental. Tesis en desarrollo sobre ISO 14001:2015.
-            </p>
-          </article>
+      <div class="featured-cases-stack">
 
-          <article class="education-card">
-            <span class="education-status">En curso · 4 materias pendientes</span>
-            <h3>Analista Programador Universitario</h3>
-            <p class="education-institution">Universidad Nacional de Jujuy (UNJu)</p>
-            <p class="education-note">
-              Fundamentos de algoritmia, estructuras de datos, programación orientada a objetos, bases de datos y arquitectura de sistemas de software.
-            </p>
-          </article>
+        <!-- CASO 1: TESIS ISO 14001:2015 -->
+        <article class="case-card-monumental" id="caso-tesis">
+          <div class="case-header-row">
+            <span class="pill-category">Ingeniería Industrial · Sustentabilidad · UNJu</span>
+            <span class="badge-status-clean">Tesis en etapa final</span>
+          </div>
 
-          <article class="education-card">
-            <span class="education-status">Formación finalizada</span>
-            <h3>Técnico Informático</h3>
-            <p class="education-institution">Escuela de Minas “Dr. Horacio Carrillo”</p>
-            <p class="education-note">
-              Sólida base secundaria técnica en lógica de programación, mantenimiento de hardware, redes y soporte a sistemas informáticos.
-            </p>
-          </article>
+          <div class="case-grid-content">
+            <div class="case-main-info">
+              <h3 class="case-title">Diagnóstico Operativo y Gestión Ambiental (ISO 14001:2015)</h3>
+              <p class="case-desc">
+                Propuesta metodológica para la estructuración integral de un Sistema de Gestión Ambiental en operaciones automotrices oficiales de Autosol Jujuy. Incluye mapeo de procesos de posventa, matriz de aspectos e impactos ambientales, estandarización del tratamiento de residuos peligrosos (aceites y baterías) y optimización en el uso de recursos hídricos y energéticos.
+              </p>
+
+              <div class="case-points-grid">
+                <div class="point-box">
+                  <span class="point-label">ALCANCE TÉCNICO</span>
+                  <span class="point-value">100% procesos de taller y concesionario</span>
+                </div>
+                <div class="point-box">
+                  <span class="point-label">HERRAMIENTA CLAVE</span>
+                  <span class="point-value">Matriz de significancia de aspectos ambientales</span>
+                </div>
+                <div class="point-box">
+                  <span class="point-label">APLICACIÓN</span>
+                  <span class="point-value">Tesis UNJu aplicada a operaciones reales</span>
+                </div>
+                <div class="point-box">
+                  <span class="point-label">BENEFICIO</span>
+                  <span class="point-value">Cumplimiento normativo y reducción de riesgos</span>
+                </div>
+              </div>
+
+              <div class="case-actions-row">
+                <button type="button" class="btn primary btn-open-modal" data-id="tesis">
+                  Ver caso de estudio técnico ↗
+                </button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- CASO 2: CENTRO DE CONTROL OPERATIVO AUTOSOL -->
+        <article class="case-card-monumental" id="caso-tablero">
+          <div class="case-header-row">
+            <span class="pill-category">Gestión de Calidad · Datos · Soluciones con IA</span>
+            <span class="badge-status-clean">Implementado · Operativo</span>
+          </div>
+
+          <div class="case-grid-content with-preview">
+            <div class="case-main-info">
+              <h3 class="case-title">Centro de Control Operativo Autosol Volkswagen</h3>
+              <p class="case-desc">
+                Panel gerencial interactivo para seguimiento y consolidación de indicadores clave de desempeño en las sedes de Jujuy y Salta. Centraliza el monitoreo de auditorías PCGC Volkswagen, índices de satisfacción de clientes (NPS), cumplimiento en taller de posventa y programas de formación de RRHH.
+              </p>
+
+              <div class="case-points-grid">
+                <div class="point-box">
+                  <span class="point-label">COBERTURA</span>
+                  <span class="point-value">Sedes Jujuy y Salta (Consolidado)</span>
+                </div>
+                <div class="point-box">
+                  <span class="point-label">FRECUENCIA</span>
+                  <span class="point-value">Monitoreo continuo en tiempo real</span>
+                </div>
+                <div class="point-box">
+                  <span class="point-label">CONFORMIDAD PCGC</span>
+                  <span class="point-value">Meta ≥ 95.0% bajo control</span>
+                </div>
+                <div class="point-box">
+                  <span class="point-label">DESARROLLO</span>
+                  <span class="point-value">Arquitectura frontend asistida por IA</span>
+                </div>
+              </div>
+
+              <div class="case-actions-row">
+                <a href="demos/tablero.html" class="btn primary">
+                  Abrir demostración interactiva ↗
+                </a>
+                <button type="button" class="btn secondary btn-open-modal" data-id="tablero">
+                  Ver ficha técnica
+                </button>
+              </div>
+            </div>
+
+            <div class="case-visual-preview">
+              <img src="demos/assets/centro-control-hero.png" alt="Vista previa del Centro de Control Operativo Autosol Volkswagen" class="preview-img" loading="lazy">
+              <span class="preview-caption">Captura real de la plataforma de gestión operativa</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- CASO 3: VALIDACIÓN DIGITAL DE SUSCRIPCIONES (SCORING) -->
+        <article class="case-card-monumental" id="caso-scoring">
+          <div class="case-header-row">
+            <span class="pill-category">Gestión de Calidad · Automatización · Soluciones con IA</span>
+            <span class="badge-status-clean">En uso operativo</span>
+          </div>
+
+          <div class="case-grid-content with-preview">
+            <div class="case-main-info">
+              <h3 class="case-title">Validación Digital de Suscripciones (Scoring Previsional)</h3>
+              <p class="case-desc">
+                Sistema estructurado de validación de comprensión contractual para suscriptores a planes de ahorro previo al primer débito bancario. Reemplazó el call center manual, verificando condiciones clave como el esquema 70/30, licitaciones con alícuotas complementarias y cuotas móviles según valor 0KM, derivando alertas preventivas en caso de dudas del suscriptor.
+              </p>
+
+              <div class="case-points-grid">
+                <div class="point-box">
+                  <span class="point-label">AUTOMATIZACIÓN</span>
+                  <span class="point-value">100% de verificaciones digitalizadas</span>
+                </div>
+                <div class="point-box">
+                  <span class="point-label">AUDITORÍA</span>
+                  <span class="point-value">Alineado a protocolo PCGC Volkswagen</span>
+                </div>
+                <div class="point-box">
+                  <span class="point-label">PREVENCIÓN</span>
+                  <span class="point-value">Derivación inmediata de alertas de calidad</span>
+                </div>
+                <div class="point-box">
+                  <span class="point-label">HERRAMIENTAS</span>
+                  <span class="point-value">Desarrollo asistido con Codex y Claude</span>
+                </div>
+              </div>
+
+              <div class="case-actions-row">
+                <a href="demos/scoring.html" class="btn primary">
+                  Abrir demostración interactiva ↗
+                </a>
+                <button type="button" class="btn secondary btn-open-modal" data-id="scoring">
+                  Ver ficha técnica
+                </button>
+              </div>
+            </div>
+
+            <div class="case-visual-preview">
+              <img src="demos/assets/scoring-preview.png" alt="Vista previa de la validación de suscripción digital" class="preview-img" loading="lazy">
+              <span class="preview-caption">Interfaz de validación comercial y control de alícuotas</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- BANNER ACCESO AL ARCHIVO COMPLETO DE PROYECTOS -->
+      <div class="archive-callout-card">
+        <div class="callout-content">
+          <span class="callout-pill">ARCHIVO COMPLETO</span>
+          <h3>Explorar los 9 proyectos de ingeniería y calidad</h3>
+          <p>
+            Accedé al registro integral con auditorías de legajos digitales (Auditores V2.1), optimización de pañol de insumos, agenda de fidelización, análisis de productividad de taller, balance de línea de panadería y automatización industrial enológica.
+          </p>
+        </div>
+        <div class="callout-action">
+          <a href="proyectos.html" class="btn primary large-btn">
+            Ver catálogo completo (9 proyectos) →
+          </a>
         </div>
       </div>
     </section>
 
-    <!-- CONTACTO SECTION (High Contrast Midnight Finale) -->
-    <section id="contacto" class="section dark">
-      <div class="wrap contact-wrap">
-        <div>
-          <div class="eyebrow-pill">
-            <span class="pulse-dot"></span>
-            <span>CONTACTO PROFESIONAL</span>
+    <!-- SECTION 3: EXPERIENCIA LABORAL -->
+    <section id="experiencia" class="wrap section-editorial">
+      <div class="section-header-editorial">
+        <span class="section-tag-editorial">TRAYECTORIA PROFESIONAL</span>
+        <h2>Experiencia laboral.</h2>
+        <p class="section-lead-editorial">
+          Rigor en auditorías normativas, estandarización de procesos y mejora continua en la industria automotriz.
+        </p>
+      </div>
+
+      <div class="timeline-stack">
+        <!-- ROL 1: AUTOSOL / CENOA -->
+        <div class="timeline-item">
+          <div class="timeline-left">
+            <span class="timeline-date">Junio 2025 — Actualidad</span>
+            <span class="timeline-company">Autosol / Grupo CENOA</span>
+            <span class="timeline-loc">Sedes Jujuy y Salta</span>
           </div>
-          <h2>Conversemos sobre procesos y oportunidades.</h2>
-          <p class="contact-lead">
-            Interesado en proyectos y desafíos vinculados a optimización de procesos, aseguramiento de la calidad, auditorías y desarrollo de soluciones operativas con inteligencia artificial.
-          </p>
-          <div class="actions">
-            <a class="btn primary" href="mailto:nelson.notario15@gmail.com" style="background: #FFFFFF; color: #0A0F13;">
-              Enviar correo electrónico <span aria-hidden="true">↗</span>
-            </a>
-            <a class="btn secondary" href="https://github.com/nelson-calidad/cv" target="_blank" rel="noopener noreferrer" style="background: transparent; color: #FFFFFF; border-color: rgba(255,255,255,0.25);">
-              Repositorio en GitHub ↗
-            </a>
+          <div class="timeline-right">
+            <h3 class="role-title">Analista de Calidad</h3>
+            <p class="role-summary">
+              Responsable del aseguramiento y control de calidad en las operaciones comerciales y de posventa del concesionario oficial Volkswagen.
+            </p>
+            <ul class="role-bullets">
+              <li><strong>Auditorías oficiales PCGC Volkswagen e ISO 9001:</strong> Preparación de carpetas de auditoría, recopilación y presentación formal de evidencias normativas ante auditores externos e internos.</li>
+              <li><strong>Gestión y seguimiento de desvíos:</strong> Análisis de causa raíz mediante metodologías 5 Porqués y diagramas de Ishikawa, liderando la formulación y verificación de planes de acción correctivos.</li>
+              <li><strong>Estandarización documental:</strong> Redacción y actualización de procedimientos operativos, hojas de ruta y manuales de calidad de sucursal.</li>
+              <li><strong>Indicadores y tableros de control:</strong> Medición sistemática de índices de satisfacción de clientes (ICSC / NPS), cumplimiento comercial y tasas de resolución en primer contacto.</li>
+              <li><strong>Digitalización asistida por IA:</strong> Mapeo de cuellos de botella y diseño de soluciones digitales operativas (encuestas de validación, control de legajos y dashboards) construidas con asistencia de herramientas de inteligencia artificial.</li>
+            </ul>
           </div>
         </div>
 
-        <div class="contact-channels">
-          <div class="channel-item">
-            <span class="channel-label">Correo electrónico</span>
-            <a class="channel-value" href="mailto:nelson.notario15@gmail.com">nelson.notario15@gmail.com</a>
+        <!-- ROL 2: PPS -->
+        <div class="timeline-item">
+          <div class="timeline-left">
+            <span class="timeline-date">2024</span>
+            <span class="timeline-company">Práctica Profesional</span>
+            <span class="timeline-loc">Universidad / Sector Productivo</span>
           </div>
-          <div class="channel-item">
-            <span class="channel-label">GitHub Principal</span>
-            <a class="channel-value" href="https://github.com/nelson-calidad" target="_blank" rel="noopener noreferrer">@nelson-calidad</a>
+          <div class="timeline-right">
+            <h3 class="role-title">Práctica Profesional Supervisada (PPS)</h3>
+            <p class="role-summary">
+              Aplicación de métodos cuantitativos de Ingeniería Industrial orientados al diagnóstico operativo, estudio de tiempos y balanceo de procesos en entornos productivos y de servicio.
+            </p>
           </div>
-          <div class="channel-item">
-            <span class="channel-label">GitHub Operativo</span>
-            <a class="channel-value" href="https://github.com/nelsoncalidad15-ops" target="_blank" rel="noopener noreferrer">@nelsoncalidad15-ops</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: FORMACIÓN ACADÉMICA Y TÉCNICA -->
+    <section id="formacion" class="wrap section-editorial">
+      <div class="section-header-editorial">
+        <span class="section-tag-editorial">EDUCACIÓN Y COMPETENCIAS</span>
+        <h2>Formación académica y técnica.</h2>
+        <p class="section-lead-editorial">
+          Base integral que articula ingeniería de métodos, programación de software y formación técnica informática.
+        </p>
+      </div>
+
+      <div class="academic-cards-grid">
+        <!-- 1. INGENIERÍA INDUSTRIAL -->
+        <div class="academic-card">
+          <span class="degree-tag">GRADO UNIVERSITARIO</span>
+          <h3 class="degree-title">Ingeniería Industrial</h3>
+          <span class="degree-school">Universidad Nacional de Jujuy (UNJu)</span>
+          <div class="degree-status highlight">
+            <span class="dot-status"></span>
+            <strong>En etapa de tesis</strong>
           </div>
-          <div class="channel-item">
-            <span class="channel-label">Ubicación</span>
-            <span class="channel-value" style="text-decoration:none">Jujuy y Salta, Argentina</span>
+          <p class="degree-desc">
+            Enfoque en gestión de la producción, optimización de operaciones, gestión de calidad, seguridad ambiental y evaluación de proyectos de inversión. Tesis en desarrollo sobre Sistema de Gestión Ambiental (ISO 14001:2015) aplicado a concesionarios automotrices.
+          </p>
+        </div>
+
+        <!-- 2. ANALISTA PROGRAMADOR UNIVERSITARIO -->
+        <div class="academic-card">
+          <span class="degree-tag">PREGRADO UNIVERSITARIO</span>
+          <h3 class="degree-title">Analista Programador Universitario</h3>
+          <span class="degree-school">Universidad Nacional de Jujuy (UNJu)</span>
+          <div class="degree-status">
+            <span class="dot-status dot-neutral"></span>
+            <strong>Cuatro materias pendientes</strong>
           </div>
-          <div class="channel-item">
-            <span class="channel-label">Disponibilidad</span>
-            <span class="channel-value" style="text-decoration:none">Liderazgo & Proyectos</span>
+          <p class="degree-desc">
+            Estructuras de datos, desarrollo de software, modelado de bases de datos relacionales, algoritmos y diseño de sistemas informáticos aplicados a la automatización.
+          </p>
+        </div>
+
+        <!-- 3. TÉCNICO INFORMÁTICO -->
+        <div class="academic-card">
+          <span class="degree-tag">EDUCACIÓN TÉCNICA</span>
+          <h3 class="degree-title">Técnico Informático</h3>
+          <span class="degree-school">Escuela de Minas "Dr. Horacio Carrillo"</span>
+          <div class="degree-status">
+            <span class="dot-status dot-completed"></span>
+            <strong>Formación finalizada</strong>
           </div>
+          <p class="degree-desc">
+            Sólida fundamentación técnica en arquitectura de hardware, redes, lógica de control, mantenimiento de sistemas y soporte de infraestructura tecnológica.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: CONTACTO -->
+    <section id="contacto" class="contact-section-editorial">
+      <div class="wrap">
+        <div class="contact-grid-editorial">
+          <div class="contact-info-col">
+            <span class="contact-eyebrow">CONVERSEMOS</span>
+            <h2 class="contact-headline">Analicemos procesos y construyamos mejoras.</h2>
+            <p class="contact-lead">
+              Disponible para proyectos de optimización de procesos, gestión de calidad, preparación para auditorías normativas y automatización operativa.
+            </p>
+            <div class="contact-buttons-row">
+              <a href="mailto:nelsonotario@gmail.com" class="btn primary-light">
+                Enviar correo electrónico ↗
+              </a>
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="btn secondary-light">
+                LinkedIn ↗
+              </a>
+            </div>
+          </div>
+
+          <div class="contact-details-box">
+            <div class="contact-item">
+              <span class="contact-label">CORREO ELECTRÓNICO</span>
+              <a href="mailto:nelsonotario@gmail.com" class="contact-link">nelsonotario@gmail.com</a>
+            </div>
+            <div class="contact-item">
+              <span class="contact-label">UBICACIÓN</span>
+              <span class="contact-value">San Salvador de Jujuy y Salta, Argentina</span>
+            </div>
+            <div class="contact-item">
+              <span class="contact-label">LINKEDIN</span>
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="contact-link">linkedin.com/in/nelson-notario</a>
+            </div>
+            <div class="contact-item">
+              <span class="contact-label">GITHUB PERSONAL</span>
+              <a href="https://github.com/nelson-calidad" target="_blank" rel="noopener noreferrer" class="contact-link">github.com/nelson-calidad</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-editorial">
+          <span>© 2025 Nelson Notario · Ingeniería Industrial, Gestión de Calidad y Soluciones Digitales</span>
+          <span>Desarrollo asistido por IA · Datos de demostración simulados y disociados</span>
         </div>
       </div>
     </section>
   </main>
 
-  <footer>
-    <div class="wrap footer-content">
-      <span>© <span id="year">2026</span> Nelson Notario · Ingeniería Industrial, Calidad y Automatización con IA</span>
-      <span>Diseñado con criterio ejecutivo y alto impacto visual.</span>
-    </div>
-  </footer>
-
-  <!-- MODAL DE DETALLE DE PROYECTO -->
+  <!-- MODAL DE DETALLE DE CASO -->
   <dialog id="projectDialog" aria-labelledby="dialogTitle">
-    <button id="closeDialog" class="close-btn" aria-label="Cerrar ventana de detalle">✕ Cerrar</button>
-    <div id="detail"></div>
+    <div class="dialog-content">
+      <button class="dialog-close" id="closeDialog" aria-label="Cerrar ventana emergente">✕</button>
+      <div id="detail">
+        <!-- Injected via JS -->
+      </div>
+    </div>
   </dialog>
 
-  <script src="app.js" defer></script>
+  <script src="app.js"></script>
 </body>
 </html>
