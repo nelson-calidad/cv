@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#1D5060">
+  <title>Demo · Autosol Fideliza (Agenda y Posventa)</title>
+  <link rel="stylesheet" href="demo.css">
+  <style>
+    .client-list-wrap {
+      display: grid;
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .client-row {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .client-info h3 {
+      font-size: 15px;
+      margin: 0 0 4px;
+    }
+    .client-info span {
+      font-size: 12.5px;
+      color: var(--muted);
+    }
+    .modal-box {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div class="head">
+      <div class="brand">
+        <span class="logo">NN</span>
+        <div class="brand-title">
+          <span>Autosol Fideliza</span>
+          <small>Fidelización y Ciclo de Vida de Clientes</small>
+        </div>
+      </div>
+      <a href="../index.html#proyectos" class="pill">← Volver al portafolio</a>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <a href="../index.html#proyectos" class="back-link">← Volver a proyectos</a>
+
+    <div class="notice">
+      <span class="notice-icon">🤝</span>
+      <div>
+        <strong>Sistematización del Ciclo Post-Venta:</strong> Basado en el repositorio <code>Fideliza</code>. Permite a los asesores comerciales y de posventa gestionar su agenda diaria de recontactos preventivos: satisfacción post-entrega (48hs), servicios de 10.000 / 20.000 km y oportunidades de renovación.
+      </div>
+    </div>
+
+    <p class="eyebrow">RELACIÓN CON CLIENTES Y RETENCIÓN</p>
+    <h1 class="h1">Agenda Inteligente de Asesores</h1>
+    <p class="lead">Trazabilidad de contactos, motivos de llamada y conversión de oportunidades de renovación y servicios de taller.</p>
+
+    <div class="grid" id="fideliza-kpis"></div>
+
+    <section class="panel">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 16px;">
+        <div>
+          <span class="eyebrow">CARTERA PRIORIZADA</span>
+          <h2 class="section-title" style="margin-bottom: 0;">Contactos Programados para Hoy</h2>
+        </div>
+        <div style="display: flex; gap: 8px;">
+          <select id="filter-state" class="field" style="width: auto;">
+            <option value="all">Todos los estados</option>
+            <option value="Pendiente">Solo Pendientes</option>
+            <option value="Contactado">Contactados</option>
+            <option value="Interesado">Interesados</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="client-list-wrap" id="clients-container">
+        <!-- Rendered via JS -->
+      </div>
+    </section>
+
+    <p id="footer">
+      Módulo demostrativo basado en <strong>Fideliza</strong>. Datos simulados exclusivamente para evaluación técnica.
+    </p>
+  </main>
+
+  <script src="fideliza.js"></script>
+</body>
+</html>

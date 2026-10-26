@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#1D5060">
+  <title>Demo · Control y Gestión Operativa de Insumos</title>
+  <link rel="stylesheet" href="demo.css">
+  <style>
+    .tabbar {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 24px 0 20px;
+    }
+    .tab-btn {
+      background: var(--paper);
+      color: var(--text);
+      border: 1px solid var(--line-strong);
+      padding: 10px 18px;
+      border-radius: var(--radius-sm);
+      font-weight: 700;
+      font-size: 13.5px;
+      transition: all 0.15s ease;
+    }
+    .tab-btn:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+    .tab-btn.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+    .form-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 14px;
+    }
+    .inventory-status-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-top: 14px;
+    }
+    .stock-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      padding: 14px 18px;
+    }
+    .stock-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    @media (max-width: 700px) {
+      .form-grid-2, .inventory-status-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div class="head">
+      <div class="brand">
+        <span class="logo">NN</span>
+        <div class="brand-title">
+          <span>Gestión Operativa de Insumos</span>
+          <small>Circuito de Solicitud, Aprobación y Stock</small>
+        </div>
+      </div>
+      <a href="../index.html#proyectos" class="pill">← Volver al portafolio</a>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <a href="../index.html#proyectos" class="back-link">← Volver a proyectos</a>
+
+    <div class="notice">
+      <span class="notice-icon">📦</span>
+      <div>
+        <strong>Simulador de Flujo Operativo de Planta:</strong> Basado en el repositorio <code>operacion</code>. Permite ingresar una solicitud de insumos, simular la bandeja de autorización de supervisión y constatar la actualización inmediata del inventario y trazabilidad. Todo opera en memoria local sin conexión externa.
+      </div>
+    </div>
+
+    <p class="eyebrow">INGENIERÍA Y OPERACIONES</p>
+    <h1 class="h1">Control de Insumos de Taller</h1>
+    <p class="lead">Estandarización del flujo de materiales para evitar roturas de stock, pérdidas y despilfarros en áreas productivas.</p>
+
+    <!-- Metrics -->
+    <div class="grid" id="insumos-metrics">
+      <!-- Generated via JS -->
+    </div>
+
+    <!-- Tabs Navigation -->
+    <div class="tabbar">
+      <button class="tab-btn active" data-tab="solicitud">1. Nueva Solicitud</button>
+      <button class="tab-btn" data-tab="autorizaciones">2. Bandeja de Autorizaciones <span id="badge-pending" class="tag warn" style="margin-left: 6px;">1</span></button>
+      <button class="tab-btn" data-tab="stock">3. Estado de Inventario y Movimientos</button>
+    </div>
+
+    <!-- Active View Container -->
+    <div id="insumos-view">
+      <!-- Rendered via JS -->
+    </div>
+
+    <p id="footer">
+      Módulo demostrativo basado en <strong>operacion</strong>. La información se reinicia al recargar la página.
+    </p>
+  </main>
+
+  <script src="insumos.js"></script>
+</body>
+</html>

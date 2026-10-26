@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#1D5060">
+  <title>Demo · Dashboard de Gestión de Posventa (Avance PVT)</title>
+  <link rel="stylesheet" href="demo.css">
+  <style>
+    .weekly-cards {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .week-box {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      padding: 14px;
+      text-align: center;
+    }
+    .week-box small {
+      font-size: 11px;
+      color: var(--muted);
+      font-weight: 700;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 4px;
+    }
+    .week-box strong {
+      font-size: 20px;
+      font-family: 'Manrope', sans-serif;
+      color: var(--ink);
+    }
+    @media (max-width: 800px) {
+      .weekly-cards {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    @media (max-width: 500px) {
+      .weekly-cards {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div class="head">
+      <div class="brand">
+        <span class="logo">NN</span>
+        <div class="brand-title">
+          <span>Avance PVT</span>
+          <small>Dashboard Operativo de Posventa y Servicios</small>
+        </div>
+      </div>
+      <a href="../index.html#proyectos" class="pill">← Volver al portafolio</a>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <a href="../index.html#proyectos" class="back-link">← Volver a proyectos</a>
+
+    <div class="notice">
+      <span class="notice-icon">📈</span>
+      <div>
+        <strong>Monitoreo de Productividad en Talleres:</strong> Basado en el repositorio <code>avance-pvt</code>. Permite evaluar el ritmo semanal de órdenes de reparación y servicios de mantenimiento frente al objetivo presupuestado (PPT). Los datos y sucursales son de simulación.
+      </div>
+    </div>
+
+    <p class="eyebrow">CONTROL DE GESTIÓN OPERATIVA</p>
+    <h1 class="h1">Avance Semanal de Posventa</h1>
+    <p class="lead">Seguimiento de capacidad de taller, productividad diaria y cumplimiento de objetivos mensuales.</p>
+
+    <!-- Filters -->
+    <div class="panel filters" style="display: flex; gap: 16px; align-items: flex-end; margin-bottom: 24px;">
+      <label class="field" style="min-width: 200px;">
+        Sucursal de Posventa
+        <select id="pvt-branch">
+          <option value="Jujuy">Taller Central San Salvador de Jujuy</option>
+          <option value="Salta">Taller Central Salta</option>
+        </select>
+      </label>
+
+      <label class="field" style="min-width: 180px;">
+        Mes de Análisis
+        <select id="pvt-month">
+          <option value="1">Enero</option>
+          <option value="2">Febrero</option>
+          <option value="3">Marzo</option>
+          <option value="4">Abril</option>
+        </select>
+      </label>
+    </div>
+
+    <!-- KPIs -->
+    <div class="grid" id="pvt-kpis"></div>
+
+    <!-- Weekly Breakdown -->
+    <section class="panel" style="margin-bottom: 24px;">
+      <span class="eyebrow">EVOLUCIÓN TEMPORAL</span>
+      <h2 class="section-title">Ritmo Semanal de Servicios Ingresados</h2>
+      <div class="weekly-cards" id="pvt-weeks"></div>
+    </section>
+
+    <!-- Progress vs Target -->
+    <div class="two">
+      <section class="panel">
+        <span class="eyebrow">CUMPLIMIENTO DE OBJETIVO</span>
+        <h2 class="section-title">Avance vs. Presupuesto Mensual</h2>
+        <div id="pvt-progress-bar"></div>
+      </section>
+
+      <section class="panel">
+        <span class="eyebrow">EFICIENCIA OPERATIVA</span>
+        <h2 class="section-title">Ratio Servicios / PPT</h2>
+        <div id="pvt-ratio-box"></div>
+      </section>
+    </div>
+
+    <p id="footer">
+      Módulo demostrativo basado en <strong>avance-pvt</strong>. Desarrollado con asistencia de herramientas de IA generativa.
+    </p>
+  </main>
+
+  <script src="avance-pvt.js"></script>
+</body>
+</html>

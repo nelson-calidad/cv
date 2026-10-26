@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#1D5060">
+  <title>Demo · Auditoría de Legajos (Audit Legajos Pro)</title>
+  <link rel="stylesheet" href="demo.css">
+  <style>
+    .checklist-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 14px;
+    }
+    .checklist-table th {
+      background: var(--surface);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+    }
+    .checklist-table td {
+      padding: 14px;
+      border-bottom: 1px solid var(--line);
+      font-size: 13.5px;
+      vertical-align: middle;
+    }
+    .status-btn-group {
+      display: inline-flex;
+      border: 1px solid var(--line-strong);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+    }
+    .status-btn {
+      padding: 7px 12px;
+      font-size: 12px;
+      font-weight: 700;
+      border: none;
+      background: var(--paper);
+      color: var(--text);
+      transition: all 0.15s ease;
+    }
+    .status-btn:not(:last-child) {
+      border-right: 1px solid var(--line-strong);
+    }
+    .status-btn.selected-ok {
+      background: var(--success);
+      color: #fff;
+    }
+    .status-btn.selected-fail {
+      background: var(--danger);
+      color: #fff;
+    }
+    .status-btn.selected-na {
+      background: var(--muted);
+      color: #fff;
+    }
+    .result-scorecard {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      padding: 22px;
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .score-circle {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 86px;
+      height: 86px;
+      border-radius: 50%;
+      border: 4px solid var(--primary);
+      background: var(--surface);
+    }
+    .score-circle strong {
+      font-size: 24px;
+      font-family: 'Manrope', sans-serif;
+      color: var(--ink);
+      line-height: 1;
+    }
+    .score-circle small {
+      font-size: 10px;
+      color: var(--muted);
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div class="head">
+      <div class="brand">
+        <span class="logo">NN</span>
+        <div class="brand-title">
+          <span>Audit Legajos Pro</span>
+          <small>Control Documental y Auditoría PCGC / ISO</small>
+        </div>
+      </div>
+      <a href="../index.html#proyectos" class="pill">← Volver al portafolio</a>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <a href="../index.html#proyectos" class="back-link">← Volver a proyectos</a>
+
+    <div class="notice">
+      <span class="notice-icon">📋</span>
+      <div>
+        <strong>Control Documental Estándar de Marca:</strong> Recreación interactiva de la herramienta desarrollada para auditorías de legajos de ventas 0KM y planes de ahorro en Autosol. Permite calificar los requisitos exigidos por Volkswagen y normas ISO, recalculando el dictamen de conformidad en tiempo real con datos de prueba.
+      </div>
+    </div>
+
+    <p class="eyebrow">GESTIÓN DE CALIDAD Y AUDITORÍA</p>
+    <h1 class="h1">Auditoría Digital de Legajos</h1>
+    <p class="lead">Checklist normativo con cálculo automático de índice de cumplimiento y reporte de hallazgos para expedientes comerciales.</p>
+
+    <div class="result-scorecard">
+      <div>
+        <div style="font-size: 12px; color: var(--muted); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;">Expediente Simulado</div>
+        <h2 style="font-size: 20px; margin: 4px 0;">Legajo #LEG-2025-084 · VW Taos Highline</h2>
+        <p class="muted" style="margin: 0; font-size: 13px;">Asesor: Ventas Convencional · Sucursal: San Salvador de Jujuy</p>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 20px;">
+        <div class="score-circle" id="score-circle">
+          <strong id="score-pct">100%</strong>
+          <small>Cumplimiento</small>
+        </div>
+        <div>
+          <div id="score-verdict" class="tag success" style="font-size: 13px; padding: 6px 12px;">Conforme para Entrega</div>
+          <p id="score-detail" class="muted" style="font-size: 12px; margin-top: 4px;">6 de 6 requisitos auditados aprobados</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+        <div>
+          <span class="eyebrow">CHECKLIST DE AUDITORÍA</span>
+          <h2 class="section-title" style="margin-bottom: 4px;">Puntos de Control Normativo</h2>
+        </div>
+        <div style="display: flex; gap: 8px;">
+          <button type="button" class="button secondary" id="btn-reset-all" style="font-size: 12px; padding: 6px 12px;">Reestablecer todo conforme</button>
+          <button type="button" class="button secondary" id="btn-simulate-findings" style="font-size: 12px; padding: 6px 12px;">Simular hallazgo crítico</button>
+        </div>
+      </div>
+
+      <div style="overflow-x: auto;">
+        <table class="checklist-table">
+          <thead>
+            <tr>
+              <th style="width: 50px;">Ítem</th>
+              <th>Requisito Normativo</th>
+              <th>Norma / Estándar</th>
+              <th>Responsable</th>
+              <th style="text-align: right;">Estado de Auditoría</th>
+            </tr>
+          </thead>
+          <tbody id="checklist-tbody">
+            <!-- Rendered via JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <p id="footer">
+      Basado en el desarrollo de <strong>Auditoria-Legajos</strong>. Recreación sin datos reales ni acceso a bases de datos corporativas.
+    </p>
+  </main>
+
+  <script src="legajos.js"></script>
+</body>
+</html>

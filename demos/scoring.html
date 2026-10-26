@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#1D5060">
+  <title>Demo · Validación Digital de Suscripción (Scoring)</title>
+  <link rel="stylesheet" href="demo.css">
+  <style>
+    .survey-container {
+      max-width: 780px;
+      margin: 0 auto;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 4px 20px rgba(25, 43, 51, 0.05);
+      overflow: hidden;
+    }
+    .progress-bar-container {
+      padding: 20px 28px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--line);
+    }
+    .progress-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      color: var(--primary);
+    }
+    .progress-track {
+      height: 8px;
+      background: #DEE7EB;
+      border-radius: 4px;
+      margin-top: 12px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: var(--primary);
+      border-radius: 4px;
+      transition: width 0.35s ease;
+    }
+    .survey-body {
+      padding: 36px 32px;
+    }
+    .client-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      padding: 14px 18px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 13px;
+      margin-bottom: 28px;
+    }
+    .client-card b {
+      color: var(--muted);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-right: 6px;
+    }
+    .step-title {
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+    .step-desc {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+    .question-block {
+      padding: 20px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .question-block:first-of-type {
+      padding-top: 0;
+    }
+    .question-title {
+      font-size: 14.5px;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+    .question-help {
+      font-size: 12.5px;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+    .choice-group {
+      display: flex;
+      gap: 12px;
+    }
+    .choice-btn {
+      flex: 1;
+      padding: 12px 18px;
+      border: 1px solid var(--line-strong);
+      background: var(--paper);
+      border-radius: var(--radius-sm);
+      font-weight: 700;
+      font-size: 13.5px;
+      color: var(--text);
+      transition: all 0.15s ease;
+      text-align: center;
+    }
+    .choice-btn:hover {
+      border-color: var(--primary);
+      background: var(--primary-light);
+      color: var(--primary);
+    }
+    .choice-btn.selected {
+      border-color: var(--primary);
+      background: var(--primary);
+      color: #fff;
+    }
+    .nav-buttons {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 32px;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+    }
+    .final-score-box {
+      text-align: center;
+      padding: 40px 20px;
+    }
+    .score-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: var(--success-bg);
+      color: var(--success);
+      font-size: 32px;
+      margin-bottom: 20px;
+      border: 2px solid var(--success);
+    }
+    .score-summary-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin: 28px 0;
+      text-align: left;
+    }
+    .score-item {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      padding: 14px;
+    }
+    .score-item span {
+      display: block;
+      font-size: 11px;
+      color: var(--muted);
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .score-item strong {
+      font-size: 14px;
+      color: var(--ink);
+    }
+    @media (max-width: 600px) {
+      .survey-body {
+        padding: 24px 18px;
+      }
+      .choice-group {
+        flex-direction: column;
+      }
+      .score-summary-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div class="head">
+      <div class="brand">
+        <span class="logo">NN</span>
+        <div class="brand-title">
+          <span>Validación Digital de Suscripción</span>
+          <small>Módulo de Scoring Comercial · Demo Aislada</small>
+        </div>
+      </div>
+      <a href="../index.html#proyectos" class="pill">← Volver al portafolio</a>
+    </div>
+  </header>
+
+  <main class="wrap" style="max-width: 860px;">
+    <a href="../index.html#proyectos" class="back-link">← Volver a proyectos</a>
+
+    <div class="notice">
+      <span class="notice-icon">ℹ</span>
+      <div>
+        <strong>Demostración de flujo operativo:</strong> Esta réplica interactiva recrea el sistema que sustituyó las llamadas telefónicas de validación por una encuesta web estructurada. Utiliza un cliente ficticio, no solicita DNI real y se procesa 100% en la memoria del navegador.
+      </div>
+    </div>
+
+    <div class="survey-container">
+      <div class="progress-bar-container">
+        <div class="progress-labels">
+          <span id="step-label">PASO 1 DE 4 · CONDICIONES DEL PLAN</span>
+          <span id="step-pct">25% COMPLETADO</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" id="progress-fill" style="width: 25%;"></div>
+        </div>
+      </div>
+
+      <div class="survey-body" id="survey-content">
+        <!-- Rendered via scoring.js -->
+      </div>
+    </div>
+
+    <p id="footer">
+      Basado en el desarrollo de <strong>encuestas-scoring</strong> (Autosol Jujuy y Salta). Datos 100% simulados para demostración técnica.
+    </p>
+  </main>
+
+  <script src="scoring.js"></script>
+</body>
+</html>

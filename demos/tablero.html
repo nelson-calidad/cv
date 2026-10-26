@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#1D5060">
+  <title>Demo · Tablero de Indicadores de Calidad y Scoring</title>
+  <link rel="stylesheet" href="demo.css">
+  <style>
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      gap: 16px;
+      margin-bottom: 24px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      padding: 18px 22px;
+    }
+    .filter-item {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      min-width: 180px;
+    }
+    .filter-item label {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .kpi-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .advisor-table-wrap {
+      overflow-x: auto;
+      margin-top: 12px;
+    }
+    .kpi.alert {
+      border-left: 4px solid var(--danger);
+    }
+    .kpi.success {
+      border-left: 4px solid var(--success);
+    }
+    .kpi.brand {
+      border-left: 4px solid var(--primary);
+    }
+    @media (max-width: 800px) {
+      .kpi-row {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .filter-item {
+        min-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div class="head">
+      <div class="brand">
+        <span class="logo">NN</span>
+        <div class="brand-title">
+          <span>Tablero de Control de Calidad</span>
+          <small>Monitoreo de Scoring y Comprensión Comercial</small>
+        </div>
+      </div>
+      <a href="../index.html#proyectos" class="pill">← Volver al portafolio</a>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <a href="../index.html#proyectos" class="back-link">← Volver a proyectos</a>
+
+    <div class="notice">
+      <span class="notice-icon">📊</span>
+      <div>
+        <strong>Tablero de Inteligencia de Gestión:</strong> Esta réplica interactiva recrea el panel gerencial desarrollado para Autosol Jujuy y Salta. Permite filtrar por sucursal y trimestre para recalcular en tiempo real las tasas de comprensión comercial, casos derivados a recontacto y desempeño por asesor. Todos los datos son simulados.
+      </div>
+    </div>
+
+    <p class="eyebrow">CONTROL DE GESTIÓN Y AUDITORÍA DE VENTAS</p>
+    <h1 class="h1">Métricas de Validación y Scoring</h1>
+    <p class="lead">Seguimiento analítico de encuestas post-suscripción para prevenir reclamos y reforzar capacitación de la fuerza de ventas.</p>
+
+    <!-- FILTER BAR -->
+    <div class="filter-bar">
+      <div class="filter-item">
+        <label for="branch-select">Sucursal</label>
+        <select id="branch-select">
+          <option value="all">Todas las sucursales (Jujuy y Salta)</option>
+          <option value="Jujuy">Sede San Salvador de Jujuy</option>
+          <option value="Salta">Sede Salta Capital</option>
+        </select>
+      </div>
+
+      <div class="filter-item">
+        <label for="period-select">Período / Trimestre</label>
+        <select id="period-select">
+          <option value="all">Año Completo (Acumulado)</option>
+          <option value="Q1">1° Trimestre (Ene - Mar)</option>
+          <option value="Q2">2° Trimestre (Abr - Jun)</option>
+          <option value="Q3">3° Trimestre (Jul - Sep)</option>
+          <option value="Q4">4° Trimestre (Oct - Dic)</option>
+        </select>
+      </div>
+
+      <button type="button" class="button secondary" id="reset-filters" style="margin-left: auto;">
+        Restablecer filtros
+      </button>
+    </div>
+
+    <!-- KPIS -->
+    <div class="kpi-row" id="kpis-container">
+      <!-- Rendered via JS -->
+    </div>
+
+    <!-- MAIN GRAPHS ROW -->
+    <div class="two">
+      <section class="panel">
+        <span class="eyebrow">COMPRENSIÓN POR PUNTO CLAVE</span>
+        <h2 class="section-title">Índice de Entendimiento Comercial</h2>
+        <p class="muted" style="font-size: 13px; margin-bottom: 18px;">
+          Porcentaje de suscriptores que confirmaron comprender cada condición sin dudas:
+        </p>
+        <div id="questions-chart"></div>
+      </section>
+
+      <section class="panel">
+        <span class="eyebrow">ESTADO DE EMISIÓN</span>
+        <h2 class="section-title">Distribución de Validaciones</h2>
+        <p class="muted" style="font-size: 13px; margin-bottom: 18px;">
+          Clasificación operativa según scoring obtenido:
+        </p>
+        <div id="status-chart"></div>
+      </section>
+    </div>
+
+    <!-- SECONDARY ROW -->
+    <div class="two">
+      <section class="panel">
+        <span class="eyebrow">MEJORA CONTINUA</span>
+        <h2 class="section-title">Focos de Capacitación Prioritarios</h2>
+        <p class="muted" style="font-size: 13px; margin-bottom: 16px;">
+          Condiciones con mayor recurrencia de dudas detectadas:
+        </p>
+        <div id="focus-points"></div>
+      </section>
+
+      <section class="panel">
+        <span class="eyebrow">DISTRIBUCIÓN GEOGRÁFICA</span>
+        <h2 class="section-title">Volumen por Sucursal</h2>
+        <p class="muted" style="font-size: 13px; margin-bottom: 16px;">
+          Participación de validaciones según sede operativa:
+        </p>
+        <div id="branches-chart"></div>
+      </section>
+    </div>
+
+    <!-- ADVISORS TABLE -->
+    <section class="panel" style="margin-top: 8px;">
+      <span class="eyebrow">AUDITORÍA POR EQUIPO COMERCIAL</span>
+      <h2 class="section-title">Desempeño y Recontactos por Asesor</h2>
+      <p class="muted" style="font-size: 13px; margin-bottom: 18px;">
+        Permite a la gerencia de ventas identificar necesidad de coaching individual sobre explicación de contratos:
+      </p>
+      <div class="advisor-table-wrap">
+        <table class="mini-table">
+          <thead>
+            <tr>
+              <th>Asesor Ficticio</th>
+              <th>Sucursal</th>
+              <th>Validaciones</th>
+              <th>Comprensión Global</th>
+              <th>Recontactos</th>
+              <th>Efectividad Scoring</th>
+            </tr>
+          </thead>
+          <tbody id="advisors-tbody">
+            <!-- Rendered via JS -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <p id="footer">
+      Módulo demostrativo basado en <strong>tablero-control-end</strong>. Indicadores recalculados 100% en cliente con datos ficticios.
+    </p>
+  </main>
+
+  <script src="tablero.js"></script>
+</body>
+</html>
