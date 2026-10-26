@@ -1,6 +1,6 @@
 /**
  * Nelson Notario — Portafolio Profesional
- * Interactive 3D Canvas Engine, High-Impact Product Previews, 3D Tilt & Modal Handlers
+ * Bento Grid Showcase, 3D Canvas Engine, High-Impact Product Previews & In-Modal Demos
  */
 
 const projects = [
@@ -15,6 +15,7 @@ const projects = [
     role: 'Identificación de la necesidad operativa, redacción de preguntas de control y desarrollo frontend con asistencia de herramientas de IA (Codex / Claude). En uso operativo.',
     result: 'Digitalización del 100% de las validaciones, acelerando los tiempos de verificación y reduciendo la tasa de reclamos por desinformación.',
     statusBadge: 'En uso operativo',
+    bentoSpan: 'bento-span-8 featured',
     repo: 'https://github.com/nelsoncalidad15-ops/encuestas-scoring',
     demo: 'scoring',
     demoUrl: 'demos/scoring.html'
@@ -30,6 +31,7 @@ const projects = [
     role: 'Diseño metodológico de indicadores, estructuración de reglas de negocio y desarrollo asistido por IA.',
     result: 'Visibilidad centralizada para la toma de decisiones gerenciales y retroalimentación directa a los equipos comerciales.',
     statusBadge: 'Implementado',
+    bentoSpan: 'bento-span-4',
     repo: 'https://github.com/nelsoncalidad15-ops/tablero-control-end',
     demo: 'tablero',
     demoUrl: 'demos/tablero.html'
@@ -45,6 +47,7 @@ const projects = [
     role: 'Mapeo de requerimientos de marca y desarrollo ágil asistido por IA (Google AI Studio / Gemini).',
     result: 'Estandarización del control documental previo a facturación y generación ágil de reportes de auditoría interna.',
     statusBadge: 'En evaluación',
+    bentoSpan: 'bento-span-4',
     repo: 'https://github.com/nelsoncalidad15-ops/Auditoria-Legajos',
     demo: 'legajos',
     demoUrl: 'demos/legajos.html'
@@ -60,6 +63,7 @@ const projects = [
     role: 'Relevamiento del circuito operativo, formulación de reglas de autorización y desarrollo asistido por IA.',
     result: 'Trazabilidad integral por área y responsable, eliminando solicitudes informales y optimizando el reaprovisionamiento.',
     statusBadge: 'Funcional',
+    bentoSpan: 'bento-span-4',
     repo: 'https://github.com/nelsoncalidad15-ops/operacion',
     demo: 'insumos',
     demoUrl: 'demos/insumos.html'
@@ -75,6 +79,7 @@ const projects = [
     role: 'Definición de etapas de retención del cliente, especificación funcional y construcción asistida por IA generativa.',
     result: 'Sistematización de la cartera de posventa y aumento del retorno preventivo a talleres oficiales.',
     statusBadge: 'En desarrollo',
+    bentoSpan: 'bento-span-4',
     repo: 'https://github.com/nelsoncalidad15-ops/Fideliza',
     demo: 'fideliza',
     demoUrl: 'demos/fideliza.html'
@@ -90,6 +95,7 @@ const projects = [
     role: 'Definición de KPIs operativos de taller y ensamble del panel analítico con asistencia de IA.',
     result: 'Monitoreo oportuno de desvíos en la capacidad del taller y balanceo dinámico de turnos.',
     statusBadge: 'Implementado',
+    bentoSpan: 'bento-span-6',
     repo: 'https://github.com/nelsoncalidad15-ops/avance-pvt',
     demo: 'avance-pvt',
     demoUrl: 'demos/avance-pvt.html'
@@ -105,6 +111,7 @@ const projects = [
     role: 'Autor de la tesis de grado de Ingeniería Industrial (Universidad Nacional de Jujuy), aplicando el estudio a las operaciones reales de Autosol Jujuy.',
     result: 'Proyecto académico en desarrollo avanzado (etapa de redacción final de tesis). Base técnica para futura implementación corporativa.',
     statusBadge: 'Tesis en curso',
+    bentoSpan: 'bento-span-6',
     repo: null,
     demo: 'tesis',
     demoUrl: null
@@ -120,6 +127,7 @@ const projects = [
     role: 'Desarrollo de modelos cuantitativos, análisis de tiempos y métodos, y diseño de planta como trabajo académico de Ingeniería Industrial.',
     result: 'Reducción teórica del 22% en trayectos internos y optimización del costo global de almacenamiento de materias primas.',
     statusBadge: 'Proyecto académico',
+    bentoSpan: 'bento-span-6',
     repo: null,
     demo: 'panaderia',
     demoUrl: null
@@ -135,6 +143,7 @@ const projects = [
     role: 'Especificación de instrumentación, arquitectura de lazo de control y diagramación técnica como proyecto de cátedra de Ingeniería Industrial.',
     result: 'Calificación sobresaliente en la cátedra de Automatización y Control Industrial.',
     statusBadge: 'Proyecto académico',
+    bentoSpan: 'bento-span-6',
     repo: null,
     demo: 'vino',
     demoUrl: null
@@ -348,7 +357,7 @@ function renderProjects(filter = 'todos') {
   const filtered = projects.filter(p => filter === 'todos' || p.cat.includes(filter));
   
   grid.innerHTML = filtered.map(p => `
-    <article class="project" role="button" tabindex="0" data-id="${p.id}" aria-label="Abrir detalles de ${p.name}">
+    <article class="bento-card ${filter === 'todos' ? p.bentoSpan : 'bento-span-6'}" role="button" tabindex="0" data-id="${p.id}" aria-label="Abrir detalles de ${p.name}">
       ${getProductWindowPreview(p)}
       
       <div class="project-tags">
@@ -368,7 +377,7 @@ function renderProjects(filter = 'todos') {
   `).join('');
 
   // Attach card click handlers & 3D tilt
-  grid.querySelectorAll('.project').forEach(card => {
+  grid.querySelectorAll('.bento-card').forEach(card => {
     const id = card.dataset.id;
     card.addEventListener('click', () => openProject(id));
     card.addEventListener('keydown', (e) => {
@@ -383,9 +392,9 @@ function renderProjects(filter = 'todos') {
       const rect = card.getBoundingClientRect();
       const x = e.clientX - rect.left - rect.width / 2;
       const y = e.clientY - rect.top - rect.height / 2;
-      const rotateX = -(y / rect.height) * 8;
-      const rotateY = (x / rect.width) * 8;
-      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px)`;
+      const rotateX = -(y / rect.height) * 6;
+      const rotateY = (x / rect.width) * 6;
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px)`;
     });
 
     card.addEventListener('mouseleave', () => {
@@ -809,7 +818,6 @@ if (location.hash.startsWith('#proyecto-')) {
       const d2 = Math.pow(rawVertices[i][0] - rawVertices[j][0], 2) +
                  Math.pow(rawVertices[i][1] - rawVertices[j][1], 2) +
                  Math.pow(rawVertices[i][2] - rawVertices[j][2], 2);
-      // Icosahedron edge length is 2.0 (distance squared is 4)
       if (Math.abs(d2 - 4) < 0.1) {
         edges.push([i, j]);
       }
@@ -870,10 +878,9 @@ if (location.hash.startsWith('#proyecto-')) {
   function render3D() {
     ctx.clearRect(0, 0, width, height);
 
-    // Smooth inertia
     rotX += (targetRotX - rotX) * 0.06;
     rotY += (targetRotY - rotY) * 0.06;
-    targetRotY += 0.004; // subtle continuous rotation
+    targetRotY += 0.004;
 
     const cx = width / 2;
     const cy = height / 2;
@@ -885,10 +892,8 @@ if (location.hash.startsWith('#proyecto-')) {
 
     // Project Vertices
     const projected = rawVertices.map(v => {
-      // Rotate Y
       let x1 = v[0] * cosY - v[2] * sinY;
       let z1 = v[0] * sinY + v[2] * cosY;
-      // Rotate X
       let y1 = v[1] * cosX - z1 * sinX;
       let z2 = v[1] * sinX + z1 * cosX;
 
@@ -935,12 +940,11 @@ if (location.hash.startsWith('#proyecto-')) {
       ctx.stroke();
     });
 
-    // 3. Draw Nodes (Tech Vertices)
+    // 3. Draw Nodes
     projected.forEach(p => {
       const radius = Math.max(2.5, 4.5 * p.factor);
       const alpha = Math.max(0.3, Math.min(1, 0.6 + p.z * 0.25));
 
-      // Node glow
       const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, radius * 2.5);
       grad.addColorStop(0, `rgba(0, 180, 216, ${alpha})`);
       grad.addColorStop(1, 'rgba(0, 180, 216, 0)');
@@ -950,7 +954,6 @@ if (location.hash.startsWith('#proyecto-')) {
       ctx.arc(p.x, p.y, radius * 2.5, 0, Math.PI * 2);
       ctx.fill();
 
-      // Core dot
       ctx.fillStyle = p.z > 0 ? '#FFFFFF' : '#00B4D8';
       ctx.beginPath();
       ctx.arc(p.x, p.y, radius * 0.7, 0, Math.PI * 2);
@@ -964,7 +967,6 @@ if (location.hash.startsWith('#proyecto-')) {
       const pz = Math.sin(pt.angle) * pt.r;
       const py = Math.sin(pt.angle * 2) * pt.tilt;
 
-      // Rotate with scene
       let x1 = px * cosY - pz * sinY;
       let z1 = px * sinY + pz * cosY;
       let y1 = py * cosX - z1 * sinX;

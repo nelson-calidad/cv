@@ -1,20 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Manrope:wght@500;600;700;800;850&display=swap');
 
 /* ==========================================================================
-   DESIGN TOKENS — HIGH CONTRAST EXECUTIVE MINIMALISM (Black, White & Petroleum)
+   DESIGN TOKENS — HIGH-IMPACT BENTO EXECUTIVE (Stark Contrast, Modern, Kinetic)
    ========================================================================== */
 :root {
-  /* Stark Contrast Canvas */
+  /* Surfaces & Canvas */
   --canvas-light: #FFFFFF;
   --canvas-subtle: #F8FAFC;
+  --canvas-card: #FFFFFF;
   --canvas-dark: #0A0F13;
   --canvas-dark-card: #121A20;
-  --canvas-dark-border: rgba(255, 255, 255, 0.12);
+  --canvas-dark-elevated: #162028;
 
   /* Hairline Borders */
   --border-light: #E2E8F0;
   --border-light-hover: #CBD5E1;
-  --border-dark: #1E293B;
+  --border-dark: rgba(255, 255, 255, 0.12);
+  --border-dark-hover: rgba(255, 255, 255, 0.25);
 
   /* Typography Colors */
   --text-dark: #0A0F13;
@@ -26,19 +28,18 @@
   /* Brand Accents */
   --brand-petroleum: #1D5060;
   --brand-petroleum-hover: #153C48;
-  --brand-petroleum-glow: rgba(29, 80, 96, 0.25);
+  --brand-petroleum-glow: rgba(29, 80, 96, 0.35);
   --brand-cyan: #00B4D8;
   --brand-emerald: #10B981;
   --brand-amber: #F59E0B;
 
-  /* Typography Families */
+  /* Fonts */
   --font-display: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
-  /* Layout */
+  /* Layout Boundaries */
   --max-width: 1240px;
-  --section-pad: 104px;
-  --radius-card: 16px;
+  --radius-card: 18px;
   --radius-pill: 9999px;
   --radius-sm: 8px;
 }
@@ -52,7 +53,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 86px;
+  scroll-padding-top: 84px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -62,8 +63,8 @@ body {
   background-color: var(--canvas-light);
   color: var(--text-body);
   font-family: var(--font-body);
-  font-size: 16px;
-  line-height: 1.65;
+  font-size: 15.5px;
+  line-height: 1.62;
   overflow-x: hidden;
 }
 
@@ -74,33 +75,33 @@ h1, h2, h3, h4, h5, p {
 h1, h2, h3, h4 {
   font-family: var(--font-display);
   color: var(--text-dark);
-  line-height: 1.12;
+  line-height: 1.1;
   letter-spacing: -0.04em;
   font-weight: 800;
 }
 
 h1 {
-  font-size: clamp(2.6rem, 5.5vw, 4.5rem);
+  font-size: clamp(2.8rem, 5.8vw, 4.6rem);
   letter-spacing: -0.045em;
   margin-bottom: 20px;
 }
 
-h1 .accent-gradient {
-  background: linear-gradient(135deg, #1D5060 0%, #00B4D8 100%);
+.text-gradient {
+  background: linear-gradient(135deg, #0A0F13 20%, #1D5060 60%, #00B4D8 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   display: inline-block;
 }
 
 h2 {
-  font-size: clamp(2rem, 3.6vw, 3rem);
+  font-size: clamp(2.1rem, 3.8vw, 3.1rem);
   letter-spacing: -0.035em;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
 
 h3 {
   font-size: 1.35rem;
-  font-weight: 700;
+  font-weight: 750;
   letter-spacing: -0.025em;
   margin-bottom: 10px;
 }
@@ -169,7 +170,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   text-transform: uppercase;
   color: var(--brand-petroleum);
   box-shadow: 0 2px 6px rgba(10, 15, 19, 0.04);
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 
 .pulse-dot {
@@ -192,7 +193,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 }
 
 /* ==========================================================================
-   TOP NAVIGATION
+   NAVIGATION
    ========================================================================== */
 .header {
   position: sticky;
@@ -218,7 +219,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   align-items: center;
   gap: 12px;
   font-family: var(--font-display);
-  font-weight: 800;
+  font-weight: 850;
   font-size: 15px;
   letter-spacing: -0.02em;
   color: var(--text-dark);
@@ -228,7 +229,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   background: #0A0F13;
   color: #FFFFFF;
   font-size: 11px;
-  font-weight: 800;
+  font-weight: 850;
   padding: 5px 9px;
   border-radius: 6px;
   letter-spacing: 0.05em;
@@ -245,7 +246,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .nav nav {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
 }
 
 .nav nav a {
@@ -267,7 +268,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   align-items: center;
   gap: 6px;
   font-size: 13.5px;
-  font-weight: 700;
+  font-weight: 750;
   color: #FFFFFF !important;
   background: #0A0F13 !important;
   padding: 8px 20px !important;
@@ -294,11 +295,11 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 }
 
 /* ==========================================================================
-   HERO SECTION — HIGH IMPACT 3D INTERACTIVE SPLIT
+   HERO SECTION — BALANCED, AIRY & IMPACTFUL
    ========================================================================== */
 .hero {
-  padding-top: 72px;
-  padding-bottom: 72px;
+  padding-top: 64px;
+  padding-bottom: 56px;
   position: relative;
 }
 
@@ -306,76 +307,46 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   display: grid;
   grid-template-columns: 1.15fr 0.85fr;
   gap: 48px;
-  align-items: center;
+  align-items: stretch;
 }
 
-.hero-statement {
-  max-width: 680px;
-}
-
-/* Central Mission Quote Card (High Contrast) */
-.hero-quote-card {
-  background: #0A0F13;
-  color: #FFFFFF;
-  border-radius: var(--radius-card);
-  padding: 24px 28px;
-  margin: 24px 0 28px 0;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 16px 36px rgba(10, 15, 19, 0.16);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.hero-quote-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 4px;
-  height: 100%;
-  background: linear-gradient(180deg, var(--brand-cyan) 0%, var(--brand-petroleum) 100%);
-}
-
-.hero-quote-text {
-  font-family: var(--font-display);
-  font-size: clamp(1.15rem, 1.8vw, 1.45rem);
-  font-weight: 700;
-  line-height: 1.45;
-  letter-spacing: -0.02em;
-  color: #FFFFFF;
-  margin: 0 0 10px 0;
-}
-
-.hero-quote-meta {
-  font-size: 12px;
-  color: var(--text-light-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-weight: 650;
+.hero-content {
   display: flex;
-  align-items: center;
-  gap: 8px;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.hero-quote-meta span {
-  color: var(--brand-cyan);
+.hero-punchline {
+  font-size: clamp(1.15rem, 1.8vw, 1.4rem);
+  font-weight: 600;
+  color: var(--text-dark);
+  line-height: 1.5;
+  margin-bottom: 24px;
+  border-left: 3px solid var(--brand-petroleum);
+  padding-left: 18px;
 }
 
-.hero .lead {
-  font-size: 16.5px;
-  color: var(--text-body);
+.hero-punchline strong {
+  color: var(--brand-petroleum);
+  font-weight: 750;
+}
+
+.hero-lead {
+  font-size: 16px;
+  color: var(--text-muted);
   line-height: 1.7;
   margin-bottom: 32px;
+  max-width: 620px;
 }
 
 .actions {
   display: flex;
-  gap: 14px;
+  gap: 12px;
   flex-wrap: wrap;
   align-items: center;
 }
 
-/* High Contrast Modern Pill Buttons */
+/* Action Buttons */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -384,7 +355,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   padding: 13px 26px;
   border-radius: var(--radius-pill);
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 750;
   transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: pointer;
   border: 1px solid transparent;
@@ -427,24 +398,16 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   color: var(--text-dark);
 }
 
-/* 3D Visual HUD Container (Right Column) */
-.hero-visual-col {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.stage-3d-box {
-  width: 100%;
-  height: 480px;
-  background: radial-gradient(circle at center, #13222B 0%, #0A0F13 100%);
+/* 3D Visual Stage */
+.hero-stage {
+  height: 100%;
+  min-height: 440px;
+  background: radial-gradient(circle at center, #15242D 0%, #0A0F13 100%);
   border-radius: 24px;
   position: relative;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 24px 64px rgba(10, 15, 19, 0.3);
+  box-shadow: 0 24px 64px rgba(10, 15, 19, 0.22);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -463,21 +426,19 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   cursor: grabbing;
 }
 
-/* Glassmorphic Live HUD Badges floating on 3D Stage */
 .hud-badge {
   position: absolute;
-  background: rgba(18, 26, 32, 0.85);
+  background: rgba(18, 26, 32, 0.88);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   padding: 12px 18px;
   border-radius: 12px;
   color: #FFFFFF;
   font-size: 12px;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
   pointer-events: none;
   z-index: 5;
-  transition: transform 0.2s ease;
 }
 
 .hud-badge.top-left {
@@ -493,24 +454,24 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .hud-badge strong {
   display: block;
   font-family: var(--font-display);
-  font-size: 18px;
+  font-size: 17px;
   color: #FFFFFF;
   line-height: 1.2;
 }
 
 .hud-badge span {
-  font-size: 10.5px;
+  font-size: 10px;
   color: var(--brand-cyan);
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-weight: 700;
+  letter-spacing: 0.1em;
+  font-weight: 800;
 }
 
-.stage-3d-hint {
+.stage-hint {
   position: absolute;
   bottom: 12px;
-  font-size: 10.5px;
-  color: rgba(255, 255, 255, 0.4);
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.45);
   letter-spacing: 0.05em;
   pointer-events: none;
 }
@@ -521,7 +482,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .metrics-ribbon {
   background: #0A0F13;
   color: #FFFFFF;
-  padding: 48px 0;
+  padding: 40px 0;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
@@ -529,11 +490,11 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .metrics-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 32px;
+  gap: 28px;
 }
 
 .metric-item {
-  border-left: 2px solid rgba(255, 255, 255, 0.12);
+  border-left: 2px solid rgba(255, 255, 255, 0.14);
   padding-left: 20px;
 }
 
@@ -560,10 +521,10 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 }
 
 /* ==========================================================================
-   3 PILLARS CARDS (Balanced Foundations)
+   BENTO GRID SHOWCASE (Dynamic, High-Impact Architecture)
    ========================================================================== */
 .section {
-  padding: var(--section-pad) 0;
+  padding: 96px 0;
   border-bottom: 1px solid var(--border-light);
 }
 
@@ -571,222 +532,12 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   background-color: var(--canvas-subtle);
 }
 
-.specialties-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-}
-
-.specialty-card {
-  padding: 32px;
-  background: #FFFFFF;
-  border-radius: var(--radius-card);
-  border: 1px solid var(--border-light);
-  box-shadow: 0 4px 16px rgba(10, 15, 19, 0.04);
-  transition: all 0.22s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.specialty-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: #0A0F13;
-  opacity: 0;
-  transition: opacity 0.2s ease;
-}
-
-.specialty-card:hover {
-  transform: translateY(-4px);
-  border-color: var(--brand-petroleum);
-  box-shadow: 0 16px 36px rgba(10, 15, 19, 0.08);
-}
-
-.specialty-card:hover::before {
-  opacity: 1;
-  background: var(--brand-petroleum);
-}
-
-.specialty-card .tag {
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--brand-petroleum);
-  margin-bottom: 12px;
-  display: block;
-}
-
-.specialty-card h3 {
-  font-size: 1.25rem;
-  margin-bottom: 10px;
-}
-
-.specialty-card p {
-  font-size: 14.5px;
-  line-height: 1.6;
-  color: var(--text-muted);
-  margin: 0;
-}
-
-/* ==========================================================================
-   METHOD / ENFOQUE SECTION
-   ========================================================================== */
-.split {
-  display: grid;
-  grid-template-columns: 1fr 1.35fr;
-  gap: 72px;
-  align-items: start;
-}
-
-.section-lead {
-  font-size: 1.3rem;
-  line-height: 1.6;
-  color: var(--text-dark);
-  font-weight: 650;
-  margin-bottom: 16px;
-}
-
-.approach-steps {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 18px;
-}
-
-.approach-step {
-  background: #FFFFFF;
-  border: 1px solid var(--border-light);
-  padding: 24px;
-  border-radius: var(--radius-card);
-  box-shadow: 0 2px 8px rgba(10, 15, 19, 0.02);
-  transition: border-color 0.2s ease;
-}
-
-.approach-step:hover {
-  border-color: var(--brand-petroleum);
-}
-
-.step-num {
-  font-family: var(--font-display);
-  font-weight: 800;
-  color: var(--brand-petroleum);
-  font-size: 12px;
-  letter-spacing: 0.12em;
-  margin-bottom: 8px;
-}
-
-.approach-step h4 {
-  font-size: 1.05rem;
-  margin-bottom: 6px;
-}
-
-.approach-step p {
-  font-size: 14px;
-  color: var(--text-muted);
-  line-height: 1.55;
-  margin: 0;
-}
-
-/* ==========================================================================
-   EXPERIENCE SECTION
-   ========================================================================== */
-.experience-list {
-  display: flex;
-  flex-direction: column;
-}
-
-.experience-item {
-  display: grid;
-  grid-template-columns: 260px 1fr;
-  gap: 48px;
-  padding: 44px 0;
-  border-top: 1px solid var(--border-light);
-}
-
-.experience-item:first-child {
-  border-top: none;
-  padding-top: 10px;
-}
-
-.job-date {
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  color: var(--brand-petroleum);
-  text-transform: uppercase;
-  margin-bottom: 4px;
-}
-
-.job-company {
-  font-size: 15px;
-  font-weight: 750;
-  color: var(--text-dark);
-}
-
-.job-location {
-  font-size: 14px;
-  color: var(--text-muted);
-  margin-top: 4px;
-}
-
-.job-badge {
-  display: inline-block;
-  margin-top: 12px;
-  font-size: 11px;
-  font-weight: 700;
-  color: #0A0F13;
-  background: var(--canvas-subtle);
-  padding: 4px 12px;
-  border-radius: var(--radius-pill);
-  border: 1px solid var(--border-light);
-}
-
-.job-content h3 {
-  font-size: 1.45rem;
-  margin-bottom: 12px;
-}
-
-.bullets-list {
-  list-style: none;
-  padding: 0;
-  margin: 20px 0 0 0;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 14px 28px;
-}
-
-.bullets-list li {
-  font-size: 14px;
-  color: var(--text-body);
-  position: relative;
-  padding-left: 20px;
-  line-height: 1.6;
-}
-
-.bullets-list li::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 9px;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--brand-petroleum);
-}
-
-/* ==========================================================================
-   PROJECTS SECTION — HIGH IMPACT TACTILE CARDS & 3D TILT
-   ========================================================================== */
 .section-header {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
   gap: 32px;
-  margin-bottom: 36px;
+  margin-bottom: 32px;
 }
 
 .section-intro {
@@ -826,14 +577,14 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   box-shadow: 0 4px 12px rgba(10, 15, 19, 0.15);
 }
 
-.project-grid {
+/* Bento Grid System */
+.bento-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 32px;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 28px;
 }
 
-/* 3D Interactive Project Card */
-.project {
+.bento-card {
   background: #FFFFFF;
   border: 1px solid var(--border-light);
   border-radius: var(--radius-card);
@@ -842,20 +593,54 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   display: flex;
   flex-direction: column;
   transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s ease, border-color 0.2s ease;
-  box-shadow: 0 4px 20px rgba(10, 15, 19, 0.05);
+  box-shadow: 0 4px 20px rgba(10, 15, 19, 0.04);
   cursor: pointer;
-  transform-style: preserve-3d;
+  position: relative;
+  overflow: hidden;
 }
 
-.project:hover {
-  transform: translateY(-6px);
+.bento-card:hover {
+  transform: translateY(-5px);
   border-color: var(--brand-petroleum);
-  box-shadow: 0 20px 48px rgba(10, 15, 19, 0.12);
+  box-shadow: 0 20px 48px rgba(10, 15, 19, 0.1);
 }
 
-/* High-Contrast Digital Product Window Preview */
+.bento-span-8 { grid-column: span 8; }
+.bento-span-4 { grid-column: span 4; }
+.bento-span-6 { grid-column: span 6; }
+.bento-span-12 { grid-column: span 12; }
+
+/* Bento Featured Banner Card */
+.bento-card.featured {
+  background: linear-gradient(145deg, #0A0F13 0%, #121A20 100%);
+  color: #FFFFFF;
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.bento-card.featured h3 {
+  color: #FFFFFF;
+}
+
+.bento-card.featured .project-summary {
+  color: var(--text-light-muted);
+}
+
+.bento-card.featured .action-link {
+  color: #FFFFFF;
+}
+
+.bento-card.featured .project-bottom {
+  border-top-color: rgba(255, 255, 255, 0.1);
+}
+
+.bento-card.featured .tag-pill {
+  background: rgba(0, 180, 216, 0.15);
+  color: var(--brand-cyan);
+}
+
+/* Product Window Preview Inside Cards */
 .product-window {
-  border-radius: 10px;
+  border-radius: 12px;
   background: #0A0F13;
   border: 1px solid rgba(255, 255, 255, 0.12);
   overflow: hidden;
@@ -933,11 +718,6 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   border-radius: var(--radius-pill);
 }
 
-.project h3 {
-  font-size: 1.35rem;
-  margin-bottom: 8px;
-}
-
 .project-summary {
   font-size: 14.5px;
   color: var(--text-muted);
@@ -964,16 +744,107 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   transition: color 0.15s ease;
 }
 
-.project:hover .action-link {
+.bento-card:hover .action-link {
   color: var(--brand-petroleum);
+}
+
+.bento-card.featured:hover .action-link {
+  color: var(--brand-cyan);
 }
 
 .action-link span {
   transition: transform 0.15s ease;
 }
 
-.project:hover .action-link span {
+.bento-card:hover .action-link span {
   transform: translateX(4px) translateY(-3px);
+}
+
+/* ==========================================================================
+   EXPERIENCE SECTION (Streamlined Executive Timeline)
+   ========================================================================== */
+.experience-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.experience-item {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 48px;
+  padding: 40px 0;
+  border-top: 1px solid var(--border-light);
+}
+
+.experience-item:first-child {
+  border-top: none;
+  padding-top: 8px;
+}
+
+.job-date {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: var(--brand-petroleum);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.job-company {
+  font-size: 15px;
+  font-weight: 750;
+  color: var(--text-dark);
+}
+
+.job-location {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+.job-badge {
+  display: inline-block;
+  margin-top: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #0A0F13;
+  background: var(--canvas-subtle);
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-light);
+}
+
+.job-content h3 {
+  font-size: 1.45rem;
+  margin-bottom: 12px;
+}
+
+.bullets-list {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0 0 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px 28px;
+}
+
+.bullets-list li {
+  font-size: 14px;
+  color: var(--text-body);
+  position: relative;
+  padding-left: 20px;
+  line-height: 1.6;
+}
+
+.bullets-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--brand-petroleum);
 }
 
 /* ==========================================================================
@@ -994,7 +865,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   box-shadow: 0 4px 16px rgba(10, 15, 19, 0.03);
   display: flex;
   flex-direction: column;
-  transition: border-top-color 0.2s ease, transform 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .education-card:hover {
@@ -1039,7 +910,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   background: #0A0F13;
   color: #FFFFFF;
   border-bottom: none;
-  padding: 112px 0;
+  padding: 104px 0;
 }
 
 .dark h2 {
@@ -1190,7 +1061,7 @@ dialog::backdrop {
 .dialog-card {
   background: var(--canvas-subtle);
   border: 1px solid var(--border-light);
-  border-radius: var(--radius-card);
+  border-radius: 14px;
   padding: 22px;
 }
 
@@ -1213,7 +1084,7 @@ dialog::backdrop {
 .dialog-participation {
   background: #0A0F13;
   color: #FFFFFF;
-  border-radius: var(--radius-card);
+  border-radius: 14px;
   padding: 24px;
   margin: 24px 0;
 }
@@ -1247,7 +1118,7 @@ dialog::backdrop {
 .inline-demo {
   background: var(--canvas-subtle);
   border: 1px solid var(--border-light);
-  border-radius: var(--radius-card);
+  border-radius: 14px;
   padding: 26px;
   margin: 26px 0;
 }
@@ -1262,29 +1133,25 @@ dialog::backdrop {
 }
 
 /* ==========================================================================
-   RESPONSIVE DESIGN
+   RESPONSIVE DESIGN (Adaptive Bento)
    ========================================================================== */
-@media (max-width: 980px) {
+@media (max-width: 1040px) {
+  .bento-span-8, .bento-span-4, .bento-span-6 {
+    grid-column: span 12;
+  }
+}
+
+@media (max-width: 960px) {
   .hero-grid {
     grid-template-columns: 1fr;
     gap: 40px;
   }
-  .stage-3d-box {
-    height: 380px;
+  .hero-stage {
+    min-height: 380px;
   }
   .metrics-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 24px;
-  }
-  .split {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-  .specialties-grid {
-    grid-template-columns: 1fr;
-  }
-  .project-grid {
-    grid-template-columns: 1fr;
   }
   .education-grid {
     grid-template-columns: 1fr;
