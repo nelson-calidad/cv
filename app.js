@@ -268,7 +268,41 @@ if (menuBtn && linksNav) {
 
 
 /* ==========================================================================
-   DEFERRED 3D ENGINEERING KINETIC LATTICE (PURE MONOCHROME)
+   COMPOUND SCROLL REVEAL MOTION & SUBTLE ENTRANCE
+   ========================================================================== */
+(function initScrollReveal() {
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    return;
+  }
+
+  const revealTargets = document.querySelectorAll(
+    '.case-card-monumental, .timeline-editorial-item, .academic-editorial-col, .archive-editorial-divider, .method-flow-strip'
+  );
+
+  revealTargets.forEach(el => el.classList.add('reveal-init'));
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, {
+      rootMargin: '0px 0px -40px 0px',
+      threshold: 0.08
+    });
+
+    revealTargets.forEach(el => observer.observe(el));
+  } else {
+    revealTargets.forEach(el => el.classList.add('in-view'));
+  }
+})();
+
+/* ==========================================================================
+   HYBRID 3D KINETIC ENGINE (Engineering Lattice + Compound Translucent Ribbon)
+   Combina la geometría estructural de ingeniería con cintas orbitales traslúcidas
    ========================================================================== */
 (function init3D() {
   const canvas = document.getElementById('hero3dCanvas');
@@ -287,18 +321,20 @@ if (menuBtn && linksNav) {
   let height = 0;
   let animId = null;
   let isVisible = true;
+  let time = 0;
 
-  // Engineering Geometry: Hexagonal Geodesic Prism with Central Hub
+  // 1. Engineering Geometry: Hexagonal Geodesic Prism with Central Nucleus
   const rawNodes = [
     // Outer Upper Ring
-    [-1.2, -0.7, -0.7], [0, -0.7, -1.4], [1.2, -0.7, -0.7],
-    [1.2, -0.7, 0.7],   [0, -0.7, 1.4],  [-1.2, -0.7, 0.7],
+    [-1.2, -0.65, -0.7], [0, -0.65, -1.35], [1.2, -0.65, -0.7],
+    [1.2, -0.65, 0.7],   [0, -0.65, 1.35],  [-1.2, -0.65, 0.7],
     // Outer Lower Ring
-    [-1.2, 0.7, -0.7],  [0, 0.7, -1.4],  [1.2, 0.7, -0.7],
-    [1.2, 0.7, 0.7],    [0, 0.7, 1.4],   [-1.2, 0.7, 0.7],
-    // Central Nucleus Nodes
-    [0, -1.5, 0],       [0, 1.5, 0],
-    [-0.5, 0, -0.5],    [0.5, 0, -0.5],  [0.5, 0, 0.5], [-0.5, 0, 0.5]
+    [-1.2, 0.65, -0.7],  [0, 0.65, -1.35],  [1.2, 0.65, -0.7],
+    [1.2, 0.65, 0.7],    [0, 0.65, 1.35],   [-1.2, 0.65, 0.7],
+    // Central Apex Hubs
+    [0, -1.45, 0],       [0, 1.45, 0],
+    // Core Nucleus
+    [-0.45, 0, -0.45],   [0.45, 0, -0.45],  [0.45, 0, 0.45], [-0.45, 0, 0.45]
   ];
 
   const edges = [
@@ -320,10 +356,45 @@ if (menuBtn && linksNav) {
     [14, 6], [15, 8], [16, 9], [17, 11]
   ];
 
-  let rotX = 0.35;
-  let rotY = 0.45;
-  let targetRotX = 0.35;
-  let targetRotY = 0.45;
+  // 2. Compound Translucent Orbital Ribbon Geometry
+  const ribbonSegments = 40;
+  const ribbonWidth = 0.22;
+  const ribbonPoints = [];
+  for (let i = 0; i <= ribbonSegments; i++) {
+    const t = (i / ribbonSegments) * Math.PI * 2;
+    const cx = Math.sin(t) * 1.45;
+    const cy = Math.cos(t * 2) * 0.65;
+    const cz = Math.cos(t) * 1.45;
+
+    // Tangent vector
+    const tx = Math.cos(t) * 1.45;
+    const ty = -Math.sin(t * 2) * 1.3;
+    const tz = -Math.sin(t) * 1.45;
+
+    // Normal approximation
+    const nx = -Math.sin(t);
+    const ny = 0;
+    const nz = -Math.cos(t);
+
+    // Binormal = cross(T, N)
+    const bx = ty * nz - tz * ny;
+    const by = tz * nx - tx * nz;
+    const bz = tx * ny - ty * nx;
+    const bLen = Math.hypot(bx, by, bz) || 1;
+    const ux = (bx / bLen) * ribbonWidth;
+    const uy = (by / bLen) * ribbonWidth;
+    const uz = (bz / bLen) * ribbonWidth;
+
+    ribbonPoints.push({
+      top: [cx + ux, cy + uy, cz + uz],
+      bot: [cx - ux, cy - uy, cz - uz]
+    });
+  }
+
+  let rotX = 0.32;
+  let rotY = 0.42;
+  let targetRotX = 0.32;
+  let targetRotY = 0.42;
   let isDragging = false;
   let prevMouseX = 0;
   let prevMouseY = 0;
@@ -338,13 +409,12 @@ if (menuBtn && linksNav) {
     ctx.scale(dpr, dpr);
   }
 
-  // Defer initialization slightly after initial paint
   setTimeout(() => {
     resize();
     window.addEventListener('resize', resize);
   }, 100);
 
-  // Mouse & Touch Controls
+  // Mouse & Touch Controls with silky lerp
   container.addEventListener('mousedown', (e) => {
     isDragging = true;
     prevMouseX = e.clientX;
@@ -353,20 +423,22 @@ if (menuBtn && linksNav) {
 
   window.addEventListener('mouseup', () => { isDragging = false; });
 
-  container.addEventListener('mousemove', (e) => {
+  window.addEventListener('mousemove', (e) => {
     if (isDragging) {
       const dx = e.clientX - prevMouseX;
       const dy = e.clientY - prevMouseY;
-      targetRotY += dx * 0.006;
-      targetRotX += dy * 0.006;
+      targetRotY += dx * 0.005;
+      targetRotX += dy * 0.005;
       prevMouseX = e.clientX;
       prevMouseY = e.clientY;
     } else {
       const rect = container.getBoundingClientRect();
       const normX = (e.clientX - rect.left - rect.width / 2) / (rect.width / 2);
       const normY = (e.clientY - rect.top - rect.height / 2) / (rect.height / 2);
-      targetRotY = 0.45 + normX * 0.35;
-      targetRotX = 0.35 - normY * 0.25;
+      if (Math.abs(normX) < 2.5 && Math.abs(normY) < 2.5) {
+        targetRotY = 0.42 + normX * 0.32;
+        targetRotX = 0.32 - normY * 0.22;
+      }
     }
   });
 
@@ -385,14 +457,14 @@ if (menuBtn && linksNav) {
     if (isDragging && e.touches.length === 1) {
       const dx = e.touches[0].clientX - prevMouseX;
       const dy = e.touches[0].clientY - prevMouseY;
-      targetRotY += dx * 0.008;
-      targetRotX += dy * 0.008;
+      targetRotY += dx * 0.007;
+      targetRotX += dy * 0.007;
       prevMouseX = e.touches[0].clientX;
       prevMouseY = e.touches[0].clientY;
     }
   }, { passive: true });
 
-  // Pause when not visible
+  // Pause when off-screen for maximum efficiency
   if ('IntersectionObserver' in window) {
     const observer = new IntersectionObserver((entries) => {
       isVisible = entries[0].isIntersecting;
@@ -409,87 +481,174 @@ if (menuBtn && linksNav) {
 
     ctx.clearRect(0, 0, width, height);
 
-    // Continuous smooth rotation
-    rotX += (targetRotX - rotX) * 0.04;
-    rotY += (targetRotY - rotY) * 0.04;
-    targetRotY += 0.0018; // Slow constant spin
+    time += 0.018;
+    const levitateY = Math.sin(time) * 4.5;
+
+    // Silky lerp rotation & slow continuous spin
+    rotX += (targetRotX - rotX) * 0.045;
+    rotY += (targetRotY - rotY) * 0.045;
+    targetRotY += 0.0016;
 
     const cosY = Math.cos(rotY), sinY = Math.sin(rotY);
     const cosX = Math.cos(rotX), sinX = Math.sin(rotX);
 
     const cx = width / 2;
-    const cy = height / 2;
-    const scale = Math.min(width, height) * 0.28;
-    const fov = 4.0;
+    const cy = height / 2 + levitateY;
+    const scale = Math.min(width, height) * 0.27;
+    const fov = 4.2;
 
-    // Transform and project nodes
-    const proj = rawNodes.map(p => {
-      // Rotate Y
+    // Helper for 3D projection
+    function project(p) {
       const x1 = p[0] * cosY - p[2] * sinY;
       const z1 = p[0] * sinY + p[2] * cosY;
-      // Rotate X
       const y1 = p[1] * cosX - z1 * sinX;
       const z2 = p[1] * sinX + z1 * cosX;
-
-      const factor = fov / (fov + z2 * 0.45);
+      const factor = fov / (fov + z2 * 0.42);
       return {
         x: cx + x1 * scale * factor,
         y: cy + y1 * scale * factor,
         z: z2,
         factor: factor
       };
-    });
+    }
 
-    // 1. Draw Subtle Background Concentric Ring
+    // 1. Project Engineering Nodes
+    const projNodes = rawNodes.map(p => project(p));
+
+    // 2. Project Ribbon Points
+    const projRibbon = ribbonPoints.map(pt => ({
+      top: project(pt.top),
+      bot: project(pt.bot)
+    }));
+
+    // 3. Precision Engineering Blueprint Background Ring
     ctx.save();
     ctx.beginPath();
-    ctx.arc(cx, cy, scale * 1.35, 0, Math.PI * 2);
-    ctx.strokeStyle = '#EDEDEB';
+    ctx.arc(cx, cy, scale * 1.38, 0, Math.PI * 2);
+    ctx.strokeStyle = '#E5E7EB';
     ctx.lineWidth = 1;
-    ctx.setLineDash([3, 6]);
+    ctx.setLineDash([4, 6]);
     ctx.stroke();
+
+    // 4 cardinal tick marks
+    const rRing = scale * 1.38;
+    for (let a = 0; a < 4; a++) {
+      const ang = a * (Math.PI / 2);
+      ctx.beginPath();
+      ctx.moveTo(cx + Math.cos(ang) * (rRing - 5), cy + Math.sin(ang) * (rRing - 5));
+      ctx.lineTo(cx + Math.cos(ang) * (rRing + 5), cy + Math.sin(ang) * (rRing + 5));
+      ctx.strokeStyle = '#C7C7C7';
+      ctx.lineWidth = 1.2;
+      ctx.setLineDash([]);
+      ctx.stroke();
+    }
     ctx.restore();
 
-    // 2. Draw Fine Monochrome Edges
-    edges.forEach(([i, j]) => {
-      const p1 = proj[i];
-      const p2 = proj[j];
-      const avgZ = (p1.z + p2.z) / 2;
-      const alpha = Math.max(0.12, Math.min(0.75, 0.45 + avgZ * 0.2));
+    // 4. Assemble Render Elements with Painter's Algorithm Depth Sorting
+    const elements = [];
 
-      ctx.beginPath();
-      ctx.moveTo(p1.x, p1.y);
-      ctx.lineTo(p2.x, p2.y);
-      ctx.strokeStyle = `rgba(23, 23, 23, ${alpha})`;
-      ctx.lineWidth = 1.1;
-      ctx.stroke();
+    // Ribbon Quads
+    for (let i = 0; i < ribbonSegments; i++) {
+      const curr = projRibbon[i];
+      const next = projRibbon[i + 1];
+      const avgZ = (curr.top.z + curr.bot.z + next.top.z + next.bot.z) / 4;
+
+      // Normal vector approximation for dynamic lighting
+      const vx = next.top.x - curr.bot.x;
+      const vy = next.top.y - curr.bot.y;
+      const wx = next.bot.x - curr.top.x;
+      const wy = next.bot.y - curr.top.y;
+      const cross = vx * wy - vy * wx;
+      const shade = Math.min(1.0, Math.max(0.18, 0.45 + (cross / 4000)));
+
+      elements.push({
+        type: 'ribbon',
+        z: avgZ,
+        curr: curr,
+        next: next,
+        shade: shade
+      });
+    }
+
+    // Strut Edges
+    edges.forEach(([i, j]) => {
+      const p1 = projNodes[i];
+      const p2 = projNodes[j];
+      elements.push({
+        type: 'edge',
+        z: (p1.z + p2.z) / 2,
+        p1: p1,
+        p2: p2
+      });
     });
 
-    // 3. Draw Engineering Structural Nodes
-    proj.forEach((p, idx) => {
-      const radius = Math.max(2.5, 4.0 * p.factor);
-      const alpha = Math.max(0.2, Math.min(1.0, 0.55 + p.z * 0.25));
+    // Nodes
+    projNodes.forEach((p, idx) => {
+      elements.push({
+        type: 'node',
+        z: p.z,
+        p: p,
+        idx: idx
+      });
+    });
 
-      // Outer point
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, radius, 0, Math.PI * 2);
-      ctx.fillStyle = idx >= 12 ? '#171717' : `rgba(36, 36, 36, ${alpha})`;
-      ctx.fill();
+    // Sort back-to-front
+    elements.sort((a, b) => a.z - b.z);
 
-      // Inner white center for hub nodes
-      if (idx >= 12) {
+    // 5. Render Sorted Elements
+    elements.forEach(item => {
+      if (item.type === 'ribbon') {
+        const { curr, next, shade } = item;
+        // Translucent Compound Stone/Graphite Facet
         ctx.beginPath();
-        ctx.arc(p.x, p.y, radius * 0.45, 0, Math.PI * 2);
-        ctx.fillStyle = '#FFFFFF';
+        ctx.moveTo(curr.top.x, curr.top.y);
+        ctx.lineTo(next.top.x, next.top.y);
+        ctx.lineTo(next.bot.x, next.bot.y);
+        ctx.lineTo(curr.bot.x, curr.bot.y);
+        ctx.closePath();
+
+        const baseVal = Math.round(180 + shade * 65);
+        const alpha = Math.max(0.18, Math.min(0.48, 0.32 + item.z * 0.12));
+        ctx.fillStyle = `rgba(${baseVal}, ${baseVal}, ${baseVal}, ${alpha})`;
         ctx.fill();
+
+        // Edge line along ribbon trajectory
+        ctx.strokeStyle = `rgba(160, 160, 160, ${alpha * 0.8})`;
+        ctx.lineWidth = 0.8;
+        ctx.stroke();
+      } else if (item.type === 'edge') {
+        const { p1, p2, z } = item;
+        const alpha = Math.max(0.14, Math.min(0.72, 0.42 + z * 0.2));
+        ctx.beginPath();
+        ctx.moveTo(p1.x, p1.y);
+        ctx.lineTo(p2.x, p2.y);
+        ctx.strokeStyle = `rgba(23, 23, 23, ${alpha})`;
+        ctx.lineWidth = 1.05;
+        ctx.stroke();
+      } else if (item.type === 'node') {
+        const { p, idx } = item;
+        const radius = Math.max(2.2, 3.8 * p.factor);
+        const alpha = Math.max(0.25, Math.min(1.0, 0.6 + p.z * 0.25));
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, radius, 0, Math.PI * 2);
+        ctx.fillStyle = idx >= 12 ? '#171717' : `rgba(34, 34, 34, ${alpha})`;
+        ctx.fill();
+
+        // High-contrast white nucleus for hub nodes
+        if (idx >= 12) {
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, radius * 0.45, 0, Math.PI * 2);
+          ctx.fillStyle = '#FFFFFF';
+          ctx.fill();
+        }
       }
     });
 
     animId = requestAnimationFrame(loop);
   }
 
-  // Start loop after page stabilizes
   setTimeout(() => {
     loop();
-  }, 200);
+  }, 180);
 })();

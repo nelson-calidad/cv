@@ -1,32 +1,52 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Manrope:wght@450;500;550;600;650;700;800&display=swap');
 
 /* ==========================================================================
-   MINIMALISMO EDITORIAL PREMIUM — SISTEMA DE DISEÑO DEFINITIVO
+   COMPOUND EDITORIAL SYSTEM — DESIGN TOKENS DEFINITIVOS
+   Inspirado en la precisión gráfica de Compound (Ink-on-paper quiet wealth journal)
    ========================================================================== */
 :root {
-  /* Paleta definitiva — Prompt Maestro */
-  --bg-white: #FFFFFF;
-  --bg-ivory: #F5F4F1;
-  --bg-dark: #171717;
-  --bg-dark-secondary: #242424;
+  /* Compound Color Palette */
+  --color-ink: #171717;
+  --color-paper: #ffffff;
+  --color-graphite-hairline: #e5e7eb;
+  --color-vellum: #f3f3f3;
+  --color-slate: #6f6f6f;
+  --color-pewter: #5e5e5e;
+  --color-ash: #a0a0a0;
+  --color-carbon: #222222;
+  --color-stone: #c7c7c7;
+  --color-cream-notice: #ffe9bf;
 
-  --ink-primary: #171717;
-  --ink-secondary: #242424;
-  --ink-muted: #777777;
-  --ink-light: #A3A3A3;
+  /* Theme Mappings */
+  --bg-white: var(--color-paper);
+  --bg-ivory: var(--color-vellum);
+  --bg-dark: var(--color-ink);
+  --bg-dark-secondary: var(--color-carbon);
 
-  --border-subtle: #E8E6E2;
-  --border-strong: #171717;
-  --accent-slate: #526875;
+  --ink-primary: var(--color-ink);
+  --ink-secondary: var(--color-carbon);
+  --ink-muted: var(--color-slate);
+  --ink-light: var(--color-ash);
+  --ink-pewter: var(--color-pewter);
+
+  --border-subtle: var(--color-graphite-hairline);
+  --border-strong: var(--color-ink);
+  --accent-slate: #4b5563;
 
   /* Tipografías */
   --font-display: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
+  /* Compound Ethereal Multi-layer Shadows */
+  --shadow-xl: rgba(0, 0, 0, 0.01) 0px 128px 51px 0px, rgba(0, 0, 0, 0.02) 0px 72px 43px 0px, rgba(0, 0, 0, 0.03) 0px 32px 32px 0px, rgba(0, 0, 0, 0.04) 0px 8px 18px 0px;
+  --shadow-xl-2: rgba(194, 194, 194, 0.01) 0px 168px 67px 0px, rgba(194, 194, 194, 0.05) 0px 94px 57px 0px, rgba(194, 194, 194, 0.09) 0px 42px 42px 0px, rgba(194, 194, 194, 0.1) 0px 10px 23px 0px;
+  --shadow-xl-3: rgba(207, 207, 207, 0.01) 0px 132px 53px 0px, rgba(207, 207, 207, 0.05) 0px 74px 44px 0px, rgba(207, 207, 207, 0.09) 0px 33px 33px 0px, rgba(207, 207, 207, 0.1) 0px 8px 18px 0px;
+
   /* Espaciado y Dimensiones */
   --container-max: 1380px;
-  --radius-sm: 6px;
-  --radius-card: 16px;
+  --radius-sm: 8px;
+  --radius-card: 20px;
+  --radius-lg-card: 24px;
   --radius-pill: 9999px;
 }
 
@@ -148,6 +168,91 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 
 .muted {
   color: var(--ink-muted);
+}
+
+/* ==========================================================================
+   COMPOUND ANNOUNCEMENT BAR (Warm Cream Ribbon #ffe9bf)
+   ========================================================================== */
+.announcement-bar {
+  background-color: var(--color-cream-notice);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 1.4;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  position: relative;
+  z-index: 101;
+}
+
+.announcement-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 8px clamp(16px, 3vw, 32px);
+  text-align: center;
+  flex-wrap: wrap;
+}
+
+.announcement-badge {
+  background: var(--color-ink);
+  color: #FFFFFF;
+  font-size: 11px;
+  font-weight: 750;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 2.5px 9px;
+  border-radius: var(--radius-pill);
+  display: inline-flex;
+  align-items: center;
+}
+
+.announcement-text {
+  font-weight: 550;
+  color: var(--color-ink);
+}
+
+.announcement-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  color: var(--color-ink);
+  transition: opacity 0.16s ease;
+}
+
+.announcement-link:hover {
+  opacity: 0.7;
+}
+
+/* ==========================================================================
+   COMPOUND SECTION DIVIDER (Hairline stroke broken by centered label)
+   ========================================================================== */
+.compound-section-divider {
+  display: flex;
+  align-items: center;
+  margin: 64px 0 40px;
+  gap: 16px;
+}
+
+.compound-section-divider::before,
+.compound-section-divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid var(--color-graphite-hairline);
+}
+
+.compound-divider-label {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 750;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-slate);
+  padding: 0 12px;
+  white-space: nowrap;
 }
 
 /* ==========================================================================
@@ -319,22 +424,37 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   margin-bottom: 32px;
 }
 
-/* Hero 3D Structural Canvas Box */
+/* Hero 3D Structural Canvas Box (Compound Elevation & Translucent Depth) */
 .hero-3d-box {
   position: relative;
   width: 100%;
   aspect-ratio: 1 / 1;
   max-width: 520px;
   margin: 0 auto;
-  background: radial-gradient(circle at center, #FAFAFA 0%, #FFFFFF 70%);
+  background: radial-gradient(circle at 50% 45%, #FFFFFF 0%, #FAFAFA 55%, var(--color-vellum) 100%);
   border: 1px solid var(--border-subtle);
-  border-radius: 20px;
+  border-radius: var(--radius-card);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.03);
+  box-shadow: var(--shadow-xl-3);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: floatLevitate 6s ease-in-out infinite;
+}
+
+@keyframes floatLevitate {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.hero-3d-box:hover {
+  box-shadow: var(--shadow-xl-2);
 }
 
 #hero3dCanvas {
@@ -411,24 +531,32 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 }
 
 .btn.primary {
-  background: #171717;
+  background: var(--color-ink);
   color: #FFFFFF;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease, box-shadow 0.22s ease;
 }
 
 .btn.primary:hover {
-  background: #242424;
-  transform: translateY(-1px);
+  background: #000000;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.16);
 }
 
 .btn.secondary {
-  background: transparent;
-  border-color: var(--border-subtle);
+  background: #FFFFFF;
+  border: 1px solid var(--border-subtle);
   color: var(--ink-primary);
+  border-radius: var(--radius-pill);
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.22s ease;
 }
 
 .btn.secondary:hover {
-  border-color: var(--ink-primary);
-  background: var(--bg-alt);
+  border-color: #CBD5E1;
+  background: var(--color-vellum);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-xl);
 }
 
 .btn.ghost {
@@ -1168,16 +1296,18 @@ dialog::backdrop {
 }
 
 .case-card-monumental {
-  background: #FFFFFF;
+  background: var(--color-paper);
   border: 1px solid var(--border-subtle);
-  border-radius: 16px;
+  border-radius: var(--radius-card);
   padding: clamp(28px, 4vw, 44px);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: var(--shadow-xl-3);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease;
 }
 
 .case-card-monumental:hover {
+  transform: translateY(-4px);
   border-color: #CBD5E1;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.04);
+  box-shadow: var(--shadow-xl-2);
 }
 
 .case-header-row {
@@ -1253,13 +1383,18 @@ dialog::backdrop {
 }
 
 .case-visual-preview {
-  background: #FAFAFA;
+  background: var(--color-vellum);
   border: 1px solid var(--border-subtle);
   border-radius: 16px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 6px 24px rgba(0,0,0,0.03);
+  box-shadow: var(--shadow-xl);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.case-card-monumental:hover .case-visual-preview {
+  box-shadow: var(--shadow-xl-3);
 }
 
 .preview-img {
@@ -1946,4 +2081,48 @@ dialog::backdrop {
     padding: 24px 20px;
   }
 }
+
+/* ==========================================================================
+   COMPOUND SCROLL REVEAL MOTION & SUBTLE HOVER POLISH
+   ========================================================================== */
+.reveal-init {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-init.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.timeline-editorial-item {
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.28s ease;
+}
+
+.timeline-editorial-item:hover {
+  transform: translateX(6px);
+}
+
+.academic-editorial-col {
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.28s ease;
+}
+
+.academic-editorial-col:hover {
+  transform: translateY(-4px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-init {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .timeline-editorial-item:hover,
+  .academic-editorial-col:hover {
+    transform: none !important;
+  }
+}
+
 
